@@ -1,0 +1,21 @@
+{
+  "name": "ai-email-agent-server",
+  "version": "1.0.0",
+  "description": "AI Email Reading Agent - Backend Service",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "@supabase/supabase-js": "^2.49.2",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "node-imap": "^0.9.6",
+    "mailparser": "^3.7.2",
+    "cors": "^2.8.5",
+    "sqlite3": "^5.1.7"
+  }
+}
