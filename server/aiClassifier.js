@@ -60,7 +60,6 @@ async function geminiClassify(email) {
   if (!GEMINI_API_KEY) throw new Error('GEMINI_API_KEY not set');
 
   const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
-  // Using gemini-1.5-flash for fast, cost-effective, and accurate classification
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
   const prompt = `You are an intelligent email triage agent. Analyze the following email and determine if it is important for a business.
@@ -72,10 +71,10 @@ BODY: ${email.body}
 
 Classify this email and respond with ONLY valid JSON in this exact format:
 {
- "important": true or false,
- "priority": "HIGH" or "MEDIUM" or "LOW",
- "category": one of: "PAYMENT_ISSUE", "SERVER_DOWN", "CLIENT_COMPLAINT", "SECURITY_ALERT", "BILLING_INQUIRY", "SUBSCRIPTION", "SPAM", "NEWSLETTER", "OTHER",
- "reason": "one clear sentence explaining why this email is or is not important"
+  "important": true or false,
+  "priority": "HIGH" or "MEDIUM" or "LOW",
+  "category": one of: "PAYMENT_ISSUE", "SERVER_DOWN", "CLIENT_COMPLAINT", "SECURITY_ALERT", "BILLING_INQUIRY", "SUBSCRIPTION", "SPAM", "NEWSLETTER", "OTHER",
+  "reason": "one clear sentence explaining why this email is or is not important"
 }
 
 Guidelines:

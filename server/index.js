@@ -4,8 +4,8 @@
  * Features: Agent polling, mock/IMAP modes, Supabase + SQLite hybrid storage
  */
 
-require('dotenv').config({ path: '../.env' });
-require('dotenv').config(); // also check local .env
+require('dotenv').config({ path: require('path').resolve(__dirname, '../.env') });
+//require('dotenv').config(); // also check local .env
 
 // console.log('DEBUG - IMAP_USER:', process.env.IMAP_USER);
 // console.log('DEBUG - IMAP_PASSWORD length:', process.env.IMAP_PASSWORD?.length);
