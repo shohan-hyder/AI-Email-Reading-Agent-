@@ -158,5 +158,70 @@
     "subject": "Product Hunt Daily - Today's top products",
     "body": "Good morning! Here are today's top products on Product Hunt. Discover new tools, apps, and services launched today by makers from around the world. Browse, upvote, and comment. Unsubscribe from daily digest.",
     "received_at": "2026-06-08T06:00:00Z"
+  },
+  {
+    "id": "mock-021",
+    "from": "billing@cloudprovider.com",
+    "from_name": "Cloud Provider Billing",
+    "subject": "URGENT: Payment Failed - Service Suspension Imminent",
+    "body": "Your payment of $299.99 has failed. Your services will be suspended in 24 hours unless you update your payment method immediately.",
+    "date": "2026-06-11T10:30:00Z"
+  },
+  {
+    "id": "mock-022",
+    "from": "alerts@monitoring.io",
+    "from_name": "Server Monitoring",
+    "subject": "CRITICAL: Production Server Down - CPU at 100%",
+    "body": "Alert: Server prod-web-01 is unresponsive. CPU usage at 100%, memory exhausted. Immediate action required.",
+    "date": "2026-06-11T09:15:00Z"
+  },
+  {
+    "id": "mock-023",
+    "from": "angry.customer@email.com",
+    "from_name": "John Smith",
+    "subject": "Extremely Disappointed - Demanding Refund",
+    "body": "This is completely unacceptable! I've been waiting 3 weeks for a response. I want a full refund immediately or I'm taking legal action.",
+    "date": "2026-06-11T08:45:00Z"
+  },
+  {
+    "id": "mock-024",
+    "from": "newsletter@techblog.com",
+    "from_name": "Tech Blog Daily",
+    "subject": "Your Weekly Digest - Top 10 Stories",
+    "body": "Here are this week's top stories in technology. Click here to read more about AI, cloud computing, and more!",
+    "date": "2026-06-11T07:00:00Z"
+  },
+  {
+    "id": "mock-025",
+    "from": "security@yourbank.com",
+    "from_name": "Security Team",
+    "subject": "Suspicious Activity Detected on Your Account",
+    "body": "We detected unusual login activity from an unknown device. Please verify your identity immediately.",
+    "date": "2026-06-11T06:30:00Z"
+  },
+  {
+    "id": "mock-026",
+    "from": "promotions@shopping.com",
+    "from_name": "Shopping Deals",
+    "subject": "🎉 50% OFF Everything - Limited Time Only!",
+    "body": "Don't miss out! Get 50% off all items today only. Use code SAVE50 at checkout. Shop now!",
+    "date": "2026-06-10T15:00:00Z"
+  },
+  {
+    "id": "mock-027",
+    "from": "support@saasplatform.com",
+    "from_name": "SaaS Platform",
+    "subject": "Your Subscription Expires in 3 Days",
+    "body": "Your annual subscription will expire on June 14, 2026. Renew now to continue enjoying our services.",
+    "date": "2026-06-10T12:00:00Z"
+  },
+  {
+    "id": "mock-028",
+    "from": "noreply@github.com",
+    "from_name": "GitHub",
+    "subject": "New pull request in your repository",
+    "body": "user123 created a pull request in your repository. Review the changes and merge if approved.",
+    "date": "2026-06-10T10:00:00Z"
   }
+
 ]

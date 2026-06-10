@@ -7,6 +7,10 @@
 require('dotenv').config({ path: '../.env' });
 require('dotenv').config(); // also check local .env
 
+// console.log('DEBUG - IMAP_USER:', process.env.IMAP_USER);
+// console.log('DEBUG - IMAP_PASSWORD length:', process.env.IMAP_PASSWORD?.length);
+// console.log('DEBUG - EMAIL_MODE:', process.env.EMAIL_MODE);
+
 const express = require('express');
 const cors = require('cors');
 const { runAgent, resetProcessedEmails, getStats } = require('./emailAgent');
@@ -30,30 +34,15 @@ app.get('/health', (req, res) => {
 });
 
 // --- Get all notifications ---
-app.get('/notifications', async (req, res) => {
+const { getImportantEmails } = require('./emailStorage');
+
+app.get('/api/emails', async (req, res) => {
   try {
-    const priority = req.query.priority;
-    const category = req.query.category;
-    const limit = parseInt(req.query.limit || '50');
-    const offset = parseInt(req.query.offset || '0');
-
-    const notifications = await db.getNotifications({
-      priority: priority || null,
-      category: category || null,
-      limit,
-      offset,
-    });
-
-    const stats = await db.getStats();
-
-    res.json({
-      success: true,
-      notifications,
-      stats,
-      pagination: { limit, offset },
-    });
+    const emails = await getImportantEmails(100);
+    res.json(emails);
   } catch (err) {
-    res.status(500).json({ success: false, error: err.message });
+    console.error('Error fetching emails:', err);
+    res.status(500).json({ error: 'Failed to fetch emails' });
   }
 });
 
@@ -170,3 +159,5 @@ process.on('SIGINT', async () => {
   await db.closeDB();
   process.exit(0);
 });
+
+

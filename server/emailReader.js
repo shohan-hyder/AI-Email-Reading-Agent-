@@ -6,14 +6,21 @@
 const fs = require('fs');
 const path = require('path');
 
+const { isEmailProcessed, markAsProcessed, saveImportantEmail } = require('./emailStorage');
+const { classifyEmail } = require('./aiClassifier');
+
 // --- Mock Email Reader ---
 
-function readMockEmails(dataPath) {
-  const filePath = dataPath || path.join(__dirname, 'mockEmails.json');
-  const raw = fs.readFileSync(filePath, 'utf-8');
-  const emails = JSON.parse(raw);
-  console.log(`[Reader] Loaded ${emails.length} mock emails from ${filePath}`);
-  return emails;
+const mockEmails = require('./mockEmails.json');
+
+async function readMockEmails() {
+  console.log('[Reader] Reading mock emails...');
+  
+  for (const email of mockEmails) {
+    await processEmail(email);
+  }
+  
+  console.log(`[Reader] Processed ${mockEmails.length} mock emails`);
 }
 
 // --- IMAP Email Reader ---
@@ -142,3 +149,24 @@ async function readEmails(config = {}) {
 }
 
 module.exports = { readEmails };
+
+async function processEmail(email) {
+  // Check for duplicates
+  const alreadyProcessed = await isEmailProcessed(email.id);
+  if (alreadyProcessed) {
+    console.log(`[Reader] Skipping duplicate email: ${email.subject}`);
+    return;
+  }
+
+  // Classify email
+  const classification = await classifyEmail(email);
+  
+  // Mark as processed
+  await markAsProcessed(email);
+
+  // If important, save to database
+  if (classification.important) {
+    await saveImportantEmail(email, classification);
+    console.log(`[Processor] Important email saved: ${email.subject}`);
+  }
+}
