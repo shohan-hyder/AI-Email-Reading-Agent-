@@ -1,44 +1,42 @@
-/**
- * AI Email Agent - Backend Service
- * Runs the agent on a schedule and exposes REST endpoints
- * Features: Agent polling, mock/IMAP modes, Supabase + SQLite hybrid storage
- */
-
-require('dotenv').config({ path: require('path').resolve(__dirname, '../.env') });
-//require('dotenv').config(); // also check local .env
-
-// console.log('DEBUG - IMAP_USER:', process.env.IMAP_USER);
-// console.log('DEBUG - IMAP_PASSWORD length:', process.env.IMAP_PASSWORD?.length);
-// console.log('DEBUG - EMAIL_MODE:', process.env.EMAIL_MODE);
-
 const express = require('express');
 const cors = require('cors');
-const { runAgent, resetProcessedEmails, getStats } = require('./emailAgent');
-const db = require('./db');
+require('dotenv').config({ path: require('path').resolve(__dirname, '../.env') });
+
+const { startAgent, runAgent } = require('./emailAgent');
+const { getNotifications, getStats } = require('./supabaseStorage');
 
 const app = express();
+const PORT = process.env.AGENT_PORT || 3001;
+
 app.use(cors());
 app.use(express.json());
 
-const PORT = process.env.AGENT_PORT || 3001;
-const POLL_INTERVAL_MS = parseInt(process.env.POLL_INTERVAL_MS || '120000'); // default 2 minutes
-
-// --- Health check ---
-app.get('/health', (req, res) => {
-  res.json({
-    status: 'ok',
+// --- Health Check ---
+app.get('/api/health', (req, res) => {
+  res.json({ 
+    status: 'ok', 
     mode: process.env.EMAIL_MODE || 'mock',
-    pollIntervalMs: POLL_INTERVAL_MS,
-    timestamp: new Date().toISOString(),
+    supabase: !!process.env.SUPABASE_URL,
+    timestamp: new Date().toISOString()
   });
 });
 
-// --- Get all notifications ---
-const { getImportantEmails } = require('./emailStorage');
+// --- Get Dashboard Notifications (FRONTEND EXPECTS THIS) ---
+app.get('/notifications', async (req, res) => {
+  try {
+    const limit = parseInt(req.query.limit) || 100;
+    const emails = await getNotifications(limit);
+    res.json(emails);
+  } catch (err) {
+    console.error('Error fetching notifications:', err);
+    res.status(500).json({ error: 'Failed to fetch notifications' });
+  }
+});
 
+// --- Also keep /api/emails for backward compatibility ---
 app.get('/api/emails', async (req, res) => {
   try {
-    const emails = await getImportantEmails(100);
+    const emails = await getNotifications(100);
     res.json(emails);
   } catch (err) {
     console.error('Error fetching emails:', err);
@@ -46,118 +44,88 @@ app.get('/api/emails', async (req, res) => {
   }
 });
 
-// --- Mark notification as read ---
-app.post('/notifications/:emailId/read', async (req, res) => {
+// --- Get Dashboard Statistics ---
+app.get('/api/stats', async (req, res) => {
   try {
-    const { emailId } = req.params;
-    const success = await db.markAsRead(emailId);
-    res.json({ success });
+    const stats = await getStats();
+    res.json(stats);
   } catch (err) {
-    res.status(500).json({ success: false, error: err.message });
+    console.error('Error fetching stats:', err);
+    res.status(500).json({ error: 'Failed to fetch stats' });
   }
 });
 
-// --- Delete notification ---
-app.delete('/notifications/:emailId', async (req, res) => {
-  try {
-    const { emailId } = req.params;
-    const success = await db.deleteNotification(emailId);
-    res.json({ success });
-  } catch (err) {
-    res.status(500).json({ success: false, error: err.message });
-  }
-});
-
-// --- Get statistics ---
-app.get('/stats', async (req, res) => {
-  try {
-    const stats = await db.getStats();
-    res.json({ success: true, stats });
-  } catch (err) {
-    res.status(500).json({ success: false, error: err.message });
-  }
-});
-
-// --- Manual trigger endpoint ---
-app.post('/run', async (req, res) => {
-  console.log('[Server] Manual agent run triggered');
-  try {
-    const stats = await runAgent();
-    res.json({ success: true, stats });
-  } catch (err) {
-    res.status(500).json({ success: false, error: err.message });
-  }
-});
-
-// --- Reset endpoint (demo/testing) ---
+// --- Reset all data (FRONTEND EXPECTS /reset) ---
 app.post('/reset', async (req, res) => {
-  console.log('[Server] Reset triggered');
   try {
-    await resetProcessedEmails();
-    res.json({ success: true, message: 'Processed emails reset. Next run will reprocess all.' });
+    const { supabase } = require('./supabaseClient');
+    if (!supabase) return res.status(500).json({ error: 'Supabase not connected' });
+
+    await supabase.from('email_notifications').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+    await supabase.from('processed_emails').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+
+    console.log('[API] ✓ Database reset successfully');
+    res.json({ success: true, message: 'All data cleared' });
   } catch (err) {
-    res.status(500).json({ success: false, error: err.message });
+    console.error('Error resetting data:', err);
+    res.status(500).json({ error: 'Failed to reset data' });
   }
 });
 
-// --- Scheduled polling ---
-async function scheduledRun() {
-  console.log(`\n[Scheduler] Triggering scheduled run...`);
-  await runAgent();
-}
-
-// --- Start HTTP server ---
-function startServer() {
-  app.listen(PORT, () => {
-    console.log(`[Server] AI Email Agent listening on port ${PORT}`);
-    console.log(`[Server] Email mode: ${process.env.EMAIL_MODE || 'mock'}`);
-    console.log(`[Server] Poll interval: ${POLL_INTERVAL_MS / 1000}s`);
-    console.log(
-      `[Server] AI provider: ${process.env.ANTHROPIC_API_KEY ? 'Claude API' : 'Rule-based (no API key)'}`,
-    );
-    console.log(
-      `[Server] Storage: ${process.env.SUPABASE_URL ? 'Supabase (hybrid)' : 'SQLite (local)'}`,
-    );
-    
-    // Start agent polling AFTER server is listening
-    console.log('[Server] Starting initial agent run...');
-    runAgent()
-      .then(() => {
-        console.log(`[Scheduler] Scheduling next run in ${POLL_INTERVAL_MS / 1000}s`);
-        setInterval(scheduledRun, POLL_INTERVAL_MS);
-      })
-      .catch((err) => {
-        console.error(`[Server] Initial run failed: ${err.message}`);
-        // Still start scheduler even if initial run fails
-        setInterval(scheduledRun, POLL_INTERVAL_MS);
-      });
-  });
-}
-
-// --- Initialize database and start server ---
-console.log('[Server] Initializing database...');
-db.initDB()
-  .then(() => {
-    console.log('[Server] Database initialized successfully');
-    startServer();
-  })
-  .catch((err) => {
-    console.error(`[Server] Database init failed: ${err.message}`);
-    console.log('[Server] Continuing with in-memory storage...');
-    startServer();
-  });
-
-// --- Graceful shutdown ---
-process.on('SIGTERM', async () => {
-  console.log('[Server] Shutting down gracefully...');
-  await db.closeDB();
-  process.exit(0);
+// --- Trigger agent (FRONTEND EXPECTS /run) ---
+app.post('/run', async (req, res) => {
+  try { 
+    await runAgent(); 
+    res.json({ success: true, message: 'Agent run completed' }); 
+  } catch (err) { 
+    res.status(500).json({ error: err.message }); 
+  }
 });
 
-process.on('SIGINT', async () => {
-  console.log('[Server] Interrupted, closing database...');
-  await db.closeDB();
-  process.exit(0);
+// --- Also add /api versions for compatibility ---
+app.post('/api/reset', async (req, res) => {
+  try {
+    const { supabase } = require('./supabaseClient');
+    if (!supabase) return res.status(500).json({ error: 'Supabase not connected' });
+
+    await supabase.from('email_notifications').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+    await supabase.from('processed_emails').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+
+    console.log('[API] ✓ Database reset successfully');
+    res.json({ success: true, message: 'All data cleared' });
+  } catch (err) {
+    console.error('Error resetting data:', err);
+    res.status(500).json({ error: 'Failed to reset data' });
+  }
 });
 
+app.post('/api/run', async (req, res) => {
+  try { 
+    await runAgent(); 
+    res.json({ success: true, message: 'Agent run completed' }); 
+  } catch (err) { 
+    res.status(500).json({ error: err.message }); 
+  }
+});
 
+app.post('/api/trigger', async (req, res) => {
+  try { 
+    await runAgent(); 
+    res.json({ success: true, message: 'Agent run completed' }); 
+  } catch (err) { 
+    res.status(500).json({ error: err.message }); 
+  }
+});
+
+// --- Start Server ---
+app.listen(PORT, () => {
+  console.log(`\n[Server] ========================================`);
+  console.log(`[Server] 🚀 AI Email Agent API on port ${PORT}`);
+  console.log(`[Server] 📧 Email mode: ${process.env.EMAIL_MODE || 'mock'}`);
+  console.log(`[Server] 🤖 AI provider: ${process.env.GEMINI_API_KEY ? 'Gemini' : 'Rule-based'}`);
+  console.log(`[Server] ☁️  Storage: ${process.env.SUPABASE_URL ? 'Supabase (Cloud)' : 'None'}`);
+  console.log(`[Server] ========================================\n`);
+  
+  // Start the agent
+  startAgent();
+});

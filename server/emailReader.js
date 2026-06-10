@@ -1,34 +1,21 @@
 /**
  * Email Reader Module
  * Supports: Mock mode (default) | IMAP mode (requires credentials)
+ * NOTE: This module ONLY reads emails. Processing is handled by emailAgent.js
  */
-
-const fs = require('fs');
-const path = require('path');
-
-const { isEmailProcessed, markAsProcessed, saveImportantEmail } = require('./emailStorage');
-const { classifyEmail } = require('./aiClassifier');
-
-// --- Mock Email Reader ---
 
 const mockEmails = require('./mockEmails.json');
 
+// --- Mock Email Reader ---
 async function readMockEmails() {
   console.log('[Reader] Reading mock emails...');
-  
-  for (const email of mockEmails) {
-    await processEmail(email);
-  }
-  
-  console.log(`[Reader] Processed ${mockEmails.length} mock emails`);
+  return mockEmails;
 }
 
 // --- IMAP Email Reader ---
-
 async function readImapEmails(config) {
   return new Promise((resolve, reject) => {
     let Imap, simpleParser;
-
     try {
       Imap = require('node-imap');
       simpleParser = require('mailparser').simpleParser;
@@ -52,7 +39,6 @@ async function readImapEmails(config) {
       imap.openBox('INBOX', false, (err, box) => {
         if (err) return reject(err);
 
-        // Fetch last 20 unseen emails
         imap.search(['UNSEEN', ['SINCE', new Date(Date.now() - 24 * 60 * 60 * 1000)]], (err, results) => {
           if (err) return reject(err);
           if (!results || results.length === 0) {
@@ -71,9 +57,7 @@ async function readImapEmails(config) {
             const chunks = {};
             let uid;
 
-            msg.on('attributes', (attrs) => {
-              uid = attrs.uid;
-            });
+            msg.on('attributes', (attrs) => { uid = attrs.uid; });
 
             msg.on('body', (stream, info) => {
               const chunks_data = [];
@@ -85,7 +69,7 @@ async function readImapEmails(config) {
 
             msg.once('end', () => {
               const p = simpleParser(
-                Object.values(chunks).join('\r\n'),
+                Object.values(chunks).join('\r\n')
               ).then((parsed) => {
                 emails.push({
                   id: `imap-${uid}`,
@@ -119,7 +103,6 @@ async function readImapEmails(config) {
 }
 
 // --- Main reader function ---
-
 async function readEmails(config = {}) {
   const mode = config.mode || process.env.EMAIL_MODE || 'mock';
 
@@ -133,40 +116,19 @@ async function readEmails(config = {}) {
 
     if (!imapConfig.user || !imapConfig.password) {
       console.warn('[Reader] IMAP credentials missing, falling back to mock mode');
-      return readMockEmails(config.mockDataPath);
+      return readMockEmails();
     }
 
     try {
       return await readImapEmails(imapConfig);
     } catch (err) {
       console.error(`[Reader] IMAP failed: ${err.message}, falling back to mock`);
-      return readMockEmails(config.mockDataPath);
+      return readMockEmails();
     }
   }
 
   // Default: mock mode
-  return readMockEmails(config.mockDataPath);
+  return readMockEmails();
 }
 
 module.exports = { readEmails };
-
-async function processEmail(email) {
-  // Check for duplicates
-  const alreadyProcessed = await isEmailProcessed(email.id);
-  if (alreadyProcessed) {
-    console.log(`[Reader] Skipping duplicate email: ${email.subject}`);
-    return;
-  }
-
-  // Classify email
-  const classification = await classifyEmail(email);
-  
-  // Mark as processed
-  await markAsProcessed(email);
-
-  // If important, save to database
-  if (classification.important) {
-    await saveImportantEmail(email, classification);
-    console.log(`[Processor] Important email saved: ${email.subject}`);
-  }
-}

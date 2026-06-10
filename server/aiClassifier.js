@@ -60,7 +60,7 @@ async function geminiClassify(email) {
   if (!GEMINI_API_KEY) throw new Error('GEMINI_API_KEY not set');
 
   const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+  const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash-lite" });
 
   const prompt = `You are an intelligent email triage agent. Analyze the following email and determine if it is important for a business.
 
