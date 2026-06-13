@@ -9,9 +9,9 @@ An intelligent, production-ready email triage system that automatically reads in
 
 ## 🌐 Live Demo & Links
 
-- **🖥️ Live Dashboard:** (https://ai-email-reading-agent-psi.vercel.app)
-- **⚙️ Backend API:** (https://ai-email-reading-agent.onrender.com)
-- **💻 GitHub Repository:** (https://github.com/shohan-hyder/AI-Email-Reading-Agent-)
+- **🖥️ Live Dashboard:** [https://ai-email-reading-agent-psi.vercel.app]
+- **⚙️ Backend API:** [https://ai-email-reading-agent.onrender.com]
+- **💻 GitHub Repository:** [https://github.com/shohan-hyder/AI-Email-Reading-Agent-]
 
 ---
 
@@ -32,7 +32,7 @@ An intelligent, production-ready email triage system that automatically reads in
 ### Option 1: Local Development (Recommended for Testing)
 
 #### Prerequisites
-- Node.js 20+ 
+- Node.js 20+
 - npm 10+
 
 #### Setup Steps
@@ -43,8 +43,8 @@ git clone https://github.com/shohan-hyder/AI-Email-Reading-Agent-.git
 cd AI-Email-Reading-Agent-
 
 # 2. Install dependencies
-cd server && npm install
-cd ../frontend && npm install
+npm install                    # Install frontend dependencies
+cd server && npm install       # Install backend dependencies
 cd ..
 
 # 3. Create .env file for backend
@@ -58,15 +58,12 @@ cd server
 npm start
 # Should see: [Server] 🚀 AI Email Agent API on port 3001
 
-# Terminal 2: Start frontend
-cd frontend
+# Terminal 2: Start frontend (from root directory)
 npm run dev
 # Should see: http://localhost:5173
 ```
 
-**Access the dashboard:** Open http://localhost:5173 in your browser.
-
----
+Access the dashboard: Open http://localhost:5173 in your browser.
 
 ### Option 2: Docker (Production Ready)
 
@@ -89,7 +86,7 @@ docker compose up --build
 
 ## 🏗️ Architecture
 
-```text
+```
 ┌─────────────────────────────────────────────────────────────────┐
 │                     AI Email Reading Agent                       │
 ├─────────────────────────────────────────────────────────────────┤
@@ -126,22 +123,25 @@ docker compose up --build
 ## 🤖 AI Classification System
 
 ### How It Works
+
 Every email goes through a two-stage hybrid classification pipeline:
 
-1. **[STAGE 1] Gemini AI (Primary):** 
-   - Sends email subject and body to `gemini-2.0-flash`.
-   - AI reasons about business context and returns a structured JSON decision.
-2. **[FALLBACK] Rule-Based Classifier:** 
-   - Activates automatically if Gemini API quota is exceeded or fails.
-   - Scans email against 100+ regex patterns across 8 categories.
-   - Ensures critical emails are never missed.
+**[STAGE 1] Gemini AI (Primary):**
+- Sends email subject and body to `gemini-2.0-flash`
+- AI reasons about business context and returns a structured JSON decision
+
+**[FALLBACK] Rule-Based Classifier:**
+- Activates automatically if Gemini API quota is exceeded or fails
+- Scans email against 100+ regex patterns across 8 categories
+- Ensures critical emails are never missed
 
 ### Structured Output
+
 For every email, the AI produces:
 - `important`: `true` or `false`
 - `priority`: `HIGH`, `MEDIUM`, or `LOW`
 - `category`: e.g., `PAYMENT_ISSUE`, `SERVER_DOWN`, `SPAM`
-- `reason`: A clear sentence justifying the decision.
+- `reason`: A clear sentence justifying the decision
 
 ### Classification Categories
 
@@ -161,13 +161,15 @@ For every email, the AI produces:
 ## 📧 Email Sources
 
 ### Mock Mode (Default)
-Perfect for testing and development. Includes **40 curated emails** covering all categories and priorities. No credentials needed!
+
+Perfect for testing and development. Includes 40 curated emails covering all categories and priorities. No credentials needed!
 
 ```env
 EMAIL_MODE=mock
 ```
 
 ### IMAP Mode (Gmail, Outlook, etc.)
+
 Connect to your real email account:
 
 ```env
@@ -184,10 +186,10 @@ IMAP_PORT=993
 
 The system ensures the same email is **never shown twice**:
 
-1. Email arrives → Generate unique `email_id`.
-2. Check Supabase `processed_emails` table.
-3. If already processed → Skip (silently ignore).
-4. If new → Mark as processed, classify, and store in `email_notifications` if important.
+1. Email arrives → Generate unique `email_id`
+2. Check Supabase `processed_emails` table
+3. If already processed → Skip (silently ignore)
+4. If new → Mark as processed, classify, and store in `email_notifications` if important
 
 **Storage:** Supabase PostgreSQL ensures data persists across server restarts and deployments.
 
@@ -196,21 +198,23 @@ The system ensures the same email is **never shown twice**:
 ## 📊 Dashboard Features
 
 ### Notification Display
+
 Each notification card explicitly displays the 6 required fields from the PDF:
 1. **Sender (From)**
 2. **Subject**
-3. **Priority** (HIGH / MEDIUM / LOW) with color coding
-4. **Category** (e.g., PAYMENT_ISSUE)
-5. **Reason** (Why the AI flagged it)
+3. **Priority (HIGH / MEDIUM / LOW)** with color coding
+4. **Category (e.g., PAYMENT_ISSUE)**
+5. **Reason (Why the AI flagged it)**
 6. **Time Received**
 
 ### Interactive Features
-- **Real-time updates** via Supabase subscriptions + 30s polling
-- **Priority & Category filters** for quick triage
-- **Mark as read** functionality
-- **Agent Log** showing live classification decisions
-- **Run History** tracking past agent scans
-- **Dark/Light mode** toggle
+
+- Real-time updates via Supabase subscriptions + 30s polling
+- Priority & Category filters for quick triage
+- Mark as read functionality
+- Agent Log showing live classification decisions
+- Run History tracking past agent scans
+- Dark/Light mode toggle
 
 ---
 
@@ -220,12 +224,12 @@ All endpoints listen on the backend URL (e.g., `http://localhost:3001` or Render
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| `GET`  | `/health` | Health check & server status |
-| `GET`  | `/notifications?limit=100` | Get all important emails |
-| `POST` | `/run` | Trigger manual agent run |
-| `POST` | `/reset` | Clear all data and reprocess |
-| `POST` | `/notifications/:id/read` | Mark a notification as read |
-| `GET`  | `/stats` | Get dashboard statistics |
+| GET | `/health` | Health check & server status |
+| GET | `/notifications?limit=100` | Get all important emails |
+| POST | `/run` | Trigger manual agent run |
+| POST | `/reset` | Clear all data and reprocess |
+| POST | `/notifications/:id/read` | Mark a notification as read |
+| GET | `/stats` | Get dashboard statistics |
 
 ---
 
@@ -251,21 +255,21 @@ Create `.env` file from `.env.example`:
 
 This project is fully deployed using modern cloud platforms:
 
-- **Frontend:** Deployed on **Vercel** for instant global CDN delivery.
-- **Backend:** Deployed on **Render** as a Node.js Web Service.
-- **Database:** Hosted on **Supabase** (Managed PostgreSQL).
+- **Frontend:** Deployed on **Vercel** for instant global CDN delivery
+- **Backend:** Deployed on **Render** as a Node.js Web Service
+- **Database:** Hosted on **Supabase** (Managed PostgreSQL)
 
 To deploy your own instance:
-1. Push code to GitHub.
-2. Connect GitHub repo to Render (Backend) and Vercel (Frontend).
-3. Add environment variables in both dashboards.
-4. Redeploy.
+1. Push code to GitHub
+2. Connect GitHub repo to Render (Backend) and Vercel (Frontend)
+3. Add environment variables in both dashboards
+4. Redeploy
 
 ---
 
 ## 📁 Project Structure
 
-```text
+```
 AI-Email-Reading-Agent-/
 ├── server/                       # Backend (Node.js + Express)
 │   ├── index.js                 # Main server + API endpoints
@@ -277,7 +281,7 @@ AI-Email-Reading-Agent-/
 │   ├── mockEmails.json          # 40 diverse test emails
 │   └── package.json
 │
-├── frontend/ (or src/)           # Frontend (React + TypeScript)
+├── src/                          # Frontend (React + TypeScript)
 │   ├── App.tsx                  # Main dashboard component
 │   ├── lib/
 │   │   └── supabase.ts         # Supabase client & types
@@ -286,6 +290,7 @@ AI-Email-Reading-Agent-/
 ├── docker-compose.yml          # Multi-container setup
 ├── Dockerfile                  # Backend container
 ├── .env.example                # Environment template
+├── package.json                # Frontend dependencies
 └── README.md                   # This file
 ```
 
@@ -298,4 +303,4 @@ AI-Email-Reading-Agent-/
 - **IMAP Mode:** Currently running in mandatory mock mode for demo purposes. IMAP code is fully implemented but requires a real Gmail App Password to activate in production.
 - **Read-Only:** The system only reads and classifies emails; it does not send replies or delete emails from the inbox.
 
----
+```
