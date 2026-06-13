@@ -14,16 +14,12 @@ const { supabase } = require('./supabaseClient');
 const app = express();
 const PORT = process.env.AGENT_PORT || 3001;
 
-// Allow both local and Vercel frontend
+// For demo: Allow all origins
 app.use(cors({
-  origin: [
-    'http://localhost:5173',
-    'http://localhost:3000',
-    /\.vercel\.app$/,  
-    'https://ai-email-reading-agent-psi.vercel.app/'  
-  ],
+  origin: true,
   credentials: true
 }));
+
 app.use(express.json());
 
 // --- Health Check ---
