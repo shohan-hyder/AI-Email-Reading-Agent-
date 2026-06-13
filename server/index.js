@@ -14,13 +14,34 @@ const { supabase } = require('./supabaseClient');
 const app = express();
 const PORT = process.env.AGENT_PORT || 3001;
 
-// For demo: Allow all origins
+// CORS - Allow all origins for demo (Vercel + localhost)
 app.use(cors({
   origin: true,
-  credentials: true
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
-
 app.use(express.json());
+
+// --- Helper: Transform DB row to frontend format ---
+function transformNotification(row) {
+  return {
+    id: row.id,
+    email_id: row.email_id,
+    subject: row.subject,
+    sender: row.from_name || 'Unknown',
+    sender_email: row.from_email || '',
+    priority: row.priority,
+    category: row.category,
+    reason: row.reason || 'No reason provided',
+    body_preview: row.body ? row.body.substring(0, 200) : '',
+    body: row.body || '',
+    received_at: row.received_at || row.created_at,
+    is_read: row.is_read || false,
+    ai_method: row.ai_method || 'unknown',
+    created_at: row.created_at
+  };
+}
 
 // --- Health Check ---
 app.get('/health', (req, res) => {
@@ -39,10 +60,13 @@ app.get('/notifications', async (req, res) => {
     const limit = parseInt(req.query.limit) || 100;
     const notifications = await getNotifications(limit);
     
+    // Transform to match frontend expectations
+    const transformed = notifications.map(transformNotification);
+    
     res.json({
       success: true,
-      notifications: notifications,
-      count: notifications.length,
+      notifications: transformed,
+      count: transformed.length,
     });
   } catch (err) {
     console.error('Error fetching notifications:', err);
@@ -51,6 +75,33 @@ app.get('/notifications', async (req, res) => {
       error: err.message, 
       notifications: [] 
     });
+  }
+});
+
+// --- Mark notification as read (FRONTEND EXPECTS THIS) ---
+app.post('/notifications/:id/read', async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    if (!supabase) {
+      return res.status(500).json({ success: false, error: 'Supabase not connected' });
+    }
+
+    // Update is_read field in Supabase
+    const { error } = await supabase
+      .from('email_notifications')
+      .update({ is_read: true })
+      .eq('id', id);
+
+    if (error) {
+      console.error('Error marking as read:', error);
+      return res.status(500).json({ success: false, error: error.message });
+    }
+
+    res.json({ success: true });
+  } catch (err) {
+    console.error('Error in mark as read:', err);
+    res.status(500).json({ success: false, error: err.message });
   }
 });
 
@@ -113,7 +164,8 @@ app.get('/api/emails', async (req, res) => {
   try {
     const limit = parseInt(req.query.limit) || 100;
     const notifications = await getNotifications(limit);
-    res.json(notifications);
+    const transformed = notifications.map(transformNotification);
+    res.json(transformed);
   } catch (err) {
     console.error('Error fetching emails:', err);
     res.status(500).json({ error: 'Failed to fetch emails' });

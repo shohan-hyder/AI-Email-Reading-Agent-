@@ -236,7 +236,7 @@ export function App() {
 
   const fetchData = useCallback(async () => {
     try {
-      const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001'
+      const backendUrl = import.meta.env.VITE_API_URL || import.meta.env.VITE_AGENT_URL || 'https://ai-email-reading-agent-sf1b.onrender.com'
       
       // Fetch notifications from backend
       const response = await fetch(`${backendUrl}/notifications?limit=100`)
@@ -297,7 +297,7 @@ export function App() {
 
     try {
       onProgress('Connecting to backend...')
-      const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001'
+      const backendUrl = import.meta.env.VITE_API_URL || import.meta.env.VITE_AGENT_URL || 'https://ai-email-reading-agent-sf1b.onrender.com'
       
       if (reset) {
         onProgress('Resetting all data...')
@@ -334,7 +334,7 @@ export function App() {
 
   const handleMarkRead = useCallback(async (id: string) => {
     try {
-      const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001'
+      const backendUrl = import.meta.env.VITE_API_URL || import.meta.env.VITE_AGENT_URL || 'https://ai-email-reading-agent-sf1b.onrender.com'
       await fetch(`${backendUrl}/notifications/${id}/read`, { method: 'POST' })
       setNotifications((prev) =>
         prev.map((n) => (n.id === id ? { ...n, is_read: true } : n)),
