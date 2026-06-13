@@ -236,13 +236,15 @@ export function App() {
 
   const fetchData = useCallback(async () => {
     try {
-      const backendUrl = import.meta.env.VITE_API_URL || import.meta.env.VITE_AGENT_URL || 'https://ai-email-reading-agent-sf1b.onrender.com'
+      const backendUrl = import.meta.env.VITE_API_URL || import.meta.env.VITE_AGENT_URL || 'http://localhost:3001'
       
       // Fetch notifications from backend
       const response = await fetch(`${backendUrl}/notifications?limit=100`)
       if (response.ok) {
         const data = await response.json()
-        setNotifications((data.notifications || []) as EmailNotification[])
+        // Handle both formats: {notifications: [...]} or direct array
+        const emails = Array.isArray(data) ? data : (data.notifications || [])
+        setNotifications(emails as EmailNotification[])
       } else {
         console.warn('Failed to fetch notifications from backend')
         setNotifications([])
@@ -297,7 +299,7 @@ export function App() {
 
     try {
       onProgress('Connecting to backend...')
-      const backendUrl = import.meta.env.VITE_API_URL || import.meta.env.VITE_AGENT_URL || 'https://ai-email-reading-agent-sf1b.onrender.com'
+      const backendUrl = import.meta.env.VITE_API_URL || import.meta.env.VITE_AGENT_URL || 'http://localhost:3001'
       
       if (reset) {
         onProgress('Resetting all data...')
@@ -334,7 +336,7 @@ export function App() {
 
   const handleMarkRead = useCallback(async (id: string) => {
     try {
-      const backendUrl = import.meta.env.VITE_API_URL || import.meta.env.VITE_AGENT_URL || 'https://ai-email-reading-agent-sf1b.onrender.com'
+      const backendUrl = import.meta.env.VITE_API_URL || import.meta.env.VITE_AGENT_URL || 'http://localhost:3001'
       await fetch(`${backendUrl}/notifications/${id}/read`, { method: 'POST' })
       setNotifications((prev) =>
         prev.map((n) => (n.id === id ? { ...n, is_read: true } : n)),
@@ -346,12 +348,13 @@ export function App() {
 
   const handleMarkAllRead = useCallback(async () => {
     try {
+      const backendUrl = import.meta.env.VITE_API_URL || import.meta.env.VITE_AGENT_URL || 'http://localhost:3001'
       // Mark each notification as read
       await Promise.all(
         notifications
           .filter((n) => !n.is_read)
           .map((n) =>
-            fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/notifications/${n.id}/read`, {
+            fetch(`${backendUrl}/notifications/${n.id}/read`, {
               method: 'POST',
             }),
           ),
@@ -549,7 +552,7 @@ export function App() {
                   </p>
                   <p className="mt-1 text-sm text-muted-foreground">
                     {notifications.length === 0
-                      ? 'Click "Scan Emails" to run the AI agent on 20 mock emails'
+                      ? 'Click "Scan Emails" to run the AI agent on mock emails'
                       : 'Try changing your filter criteria'}
                   </p>
                 </div>

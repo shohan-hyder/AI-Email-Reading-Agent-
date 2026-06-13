@@ -1,77 +1,38 @@
-version: "3.9"
-
 services:
-  # Frontend dashboard (React + Vite)
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: ai-email-backend
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
+      - EMAIL_MODE=${EMAIL_MODE:-mock}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_SERVICE_KEY=${SUPABASE_SERVICE_KEY}
+      - AGENT_PORT=3001
+      - POLL_INTERVAL_MS=${POLL_INTERVAL_MS:-120000}
+    restart: unless-stopped
+    networks:
+      - app-network
+
   frontend:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: ai-email-dashboard
+      args:
+        VITE_API_URL: http://localhost:3001  # Pass as build arg
+    container_name: ai-email-frontend
     ports:
-      - "8080:80"
-    environment:
-      - VITE_SUPABASE_URL=${VITE_SUPABASE_URL}
-      - VITE_SUPABASE_ANON_KEY=${VITE_SUPABASE_ANON_KEY}
-      - VITE_AGENT_URL=http://localhost:3001
+      - "5173:5173"
     depends_on:
-      - agent
+      - backend
     restart: unless-stopped
     networks:
-      - email-agent-network
-    healthcheck:
-      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:80/"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
-
-  # AI Email Agent service (Node.js backend)
-  agent:
-    build:
-      context: ./server
-      dockerfile: Dockerfile
-    container_name: ai-email-agent
-    ports:
-      - "3001:3001"
-    environment:
-      # Supabase (optional - falls back to SQLite if not provided)
-      - SUPABASE_URL=${SUPABASE_URL}
-      - SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY}
-      - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY}
-      # AI provider (optional - falls back to rule-based if not set)
-      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
-      # Email source: 'mock' (default) or 'imap'
-      - EMAIL_MODE=${EMAIL_MODE:-mock}
-      # IMAP credentials (only needed if EMAIL_MODE=imap)
-      - IMAP_HOST=${IMAP_HOST:-imap.gmail.com}
-      - IMAP_USER=${IMAP_USER}
-      - IMAP_PASSWORD=${IMAP_PASSWORD}
-      - IMAP_PORT=${IMAP_PORT:-993}
-      # Poll interval in milliseconds (default: 2 minutes)
-      - POLL_INTERVAL_MS=${POLL_INTERVAL_MS:-120000}
-      - AGENT_PORT=3001
-      - NODE_ENV=${NODE_ENV:-development}
-    restart: unless-stopped
-    networks:
-      - email-agent-network
-    volumes:
-      # Persist SQLite database across container restarts
-      - agent_data:/app/data
-      # Optional: mount .env file from host
-      - ./.env:/app/.env:ro
-    healthcheck:
-      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3001/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 20s
-
-volumes:
-  # SQLite database volume (persists processed emails and notifications)
-  agent_data:
-    driver: local
+      - app-network
 
 networks:
-  # Shared network for services to communicate
-  email-agent-network:
+  app-network:
     driver: bridge
