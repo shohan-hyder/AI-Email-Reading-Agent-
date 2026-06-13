@@ -9,9 +9,9 @@ An intelligent, production-ready email triage system that automatically reads in
 
 ## 🌐 Live Demo & Links
 
-- **🖥️ Live Dashboard:** [https://ai-email-reading-agent-psi.vercel.app](https://ai-email-reading-agent-psi.vercel.app)
-- **⚙️ Backend API:** [https://ai-email-reading-agent.onrender.com](https://ai-email-reading-agent.onrender.com)
-- **💻 GitHub Repository:** [https://github.com/shohan-hyder/AI-Email-Reading-Agent-](https://github.com/shohan-hyder/AI-Email-Reading-Agent-)
+- **🖥️ Live Dashboard:** (https://ai-email-reading-agent-psi.vercel.app)
+- **⚙️ Backend API:** (https://ai-email-reading-agent.onrender.com)
+- **💻 GitHub Repository:** (https://github.com/shohan-hyder/AI-Email-Reading-Agent-)
 
 ---
 
