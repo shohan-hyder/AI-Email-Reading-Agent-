@@ -1,227 +1,162 @@
 [
   {
-    "id": "mock-001",
-    "from": "billing@stripe.com",
-    "from_name": "Stripe Billing",
-    "subject": "Payment Failed - Action Required",
-    "body": "We were unable to process your payment of $499.00 for your subscription. Your card ending in 4242 was declined. Please update your payment method to avoid service interruption. If you believe this is an error, please contact your bank.",
-    "received_at": "2026-06-08T08:15:00Z"
+    "id": "mock-101",
+    "from": "payments@paypal.com",
+    "from_name": "PayPal",
+    "subject": "Action Required: Your linked bank account has been declined",
+    "body": "Dear User, We attempted to process a payment of $156.00 to your vendor, but your linked bank account (ending in 8821) was declined by the issuing bank. This may result in late fees or service interruption. Please update your payment method within 48 hours to avoid account restrictions. Transaction ID: PP-20260611-8847.",
+    "received_at": "2026-06-11T07:45:00Z"
   },
   {
-    "id": "mock-002",
-    "from": "alerts@monitoring.io",
-    "from_name": "Server Monitor",
-    "subject": "CRITICAL: Production Server Down - CPU 98% / Service Unavailable",
-    "body": "ALERT LEVEL: CRITICAL\nServer: prod-web-01\nStatus: Service Unavailable\nCPU Usage: 98%\nMemory: 94%\nUptime: 0 minutes\nError: 500 Internal Server Error on all endpoints\nImmediate action required. Automatic recovery failed.",
-    "received_at": "2026-06-08T09:30:00Z"
+    "id": "mock-102",
+    "from": "ops@datadog.com",
+    "from_name": "Datadog Monitoring",
+    "subject": "[CRITICAL] Redis cluster unreachable - cache failures at 100%",
+    "body": "ALERT TYPE: CRITICAL\nService: Redis Production Cluster\nStatus: UNREACHABLE\nStarted: 2026-06-11T08:12:33Z\nDuration: 14 minutes\nImpact: All cache lookups failing, fallback to database causing 8x latency increase\nError rate: 100% of cache operations\nAffected hosts: redis-prod-01, redis-prod-02, redis-prod-03\nPagerDuty incident triggered. On-call engineer notified.",
+    "received_at": "2026-06-11T08:15:00Z"
   },
   {
-    "id": "mock-003",
-    "from": "newsletter@techdigest.com",
-    "from_name": "Tech Digest Weekly",
-    "subject": "Your Weekly Tech Digest - Top Stories This Week",
-    "body": "Good morning! Here are your top tech stories for this week. AI advancements, new product launches, and more. Click here to unsubscribe if you no longer wish to receive this newsletter. This is a promotional email.",
-    "received_at": "2026-06-08T07:00:00Z"
+    "id": "mock-103",
+    "from": "marcus.johnson@fintech-corp.com",
+    "from_name": "Marcus Johnson",
+    "subject": "Re: Invoice dispute - $45,000 overcharged for Q1 services",
+    "body": "Hi Finance Team, I'm writing to formally dispute Invoice #INV-2026-Q1-0342 for $45,230. Our records show we were only contracted for $32,000 worth of services in Q1. We have been overcharged by $13,230. I've attached our signed contract and usage logs as evidence. Please issue a credit note within 5 business days or we will escalate this to our legal department. This is the second billing error in three months and it's becoming a serious concern.",
+    "received_at": "2026-06-11T09:30:00Z"
   },
   {
-    "id": "mock-004",
-    "from": "john.smith@enterprise-client.com",
-    "from_name": "John Smith",
-    "subject": "URGENT: System completely broken - clients cannot access portal",
-    "body": "This is completely unacceptable. Our clients have been unable to access the customer portal for the past 3 hours. We are losing business every minute this is down. I demand immediate attention and a fix within the hour. If this is not resolved, we will be escalating to your CEO and considering legal action. This is a critical service failure.",
-    "received_at": "2026-06-08T10:45:00Z"
+    "id": "mock-104",
+    "from": "news@substack.com",
+    "from_name": "The AI Weekly",
+    "subject": "This week in AI: GPT-5 rumors, new open-source models, and more",
+    "body": "Hey there! This week's top stories: 1) OpenAI hints at GPT-5 release, 2) Meta releases Llama 4 open weights, 3) EU AI Act enforcement begins, 4) Startup raises $200M for AI chips. Read all 12 stories on our website. Don't miss next week's edition! Unsubscribe",
+    "received_at": "2026-06-11T06:00:00Z"
   },
   {
-    "id": "mock-005",
-    "from": "offers@amazondeal.com",
-    "from_name": "Amazon Deals",
-    "subject": "🔥 Exclusive offer: 50% OFF everything today only! FREE GIFT inside",
-    "body": "Congratulations! You have been selected for our exclusive 50% discount promotion. Click here to claim your free gift. Limited time offer! Unsubscribe | Privacy Policy | This is a promotional email.",
-    "received_at": "2026-06-08T06:30:00Z"
+    "id": "mock-105",
+    "from": "security@cloudflare.com",
+    "from_name": "Cloudflare Security",
+    "subject": "URGENT: SSL certificate expires in 48 hours - immediate renewal required",
+    "body": "CRITICAL SECURITY NOTICE\nDomain: api.yourdomain.com\nCertificate Type: Wildcard SSL\nExpiration: 2026-06-13T23:59:59Z (48 hours)\nIssuer: Let's Encrypt\nIf not renewed, all HTTPS traffic will fail with security warnings, and API clients will reject connections. Auto-renewal failed due to DNS validation error. Manual intervention required immediately.",
+    "received_at": "2026-06-11T10:00:00Z"
   },
   {
-    "id": "mock-006",
-    "from": "accounts@bigcorp-client.com",
-    "from_name": "BigCorp Accounts",
-    "subject": "Invoice #INV-2026-0891 - Payment Overdue 30 Days",
-    "body": "Dear Finance Team, This is a reminder that Invoice #INV-2026-0891 for $12,450.00 is now 30 days overdue. Despite previous reminders, we have not received payment. Please arrange payment immediately to avoid account suspension and late fees. Contact us at accounts@bigcorp.com.",
-    "received_at": "2026-06-08T11:00:00Z"
+    "id": "mock-106",
+    "from": "deals@aliexpress.com",
+    "from_name": "AliExpress",
+    "subject": "🎁 FLASH SALE: Up to 90% OFF + FREE shipping worldwide!",
+    "body": "HUGE FLASH SALE! Get up to 90% off on electronics, fashion, home & garden. Use code FLASH90 for extra 10% off. Free shipping on orders over $10. Sale ends in 6 hours! Shop now before items sell out! Unsubscribe",
+    "received_at": "2026-06-11T05:30:00Z"
   },
   {
-    "id": "mock-007",
-    "from": "no-reply@github.com",
-    "from_name": "GitHub",
-    "subject": "Your GitHub subscription renewal - Pro Plan",
-    "body": "Your GitHub Pro plan will renew on July 1, 2026 for $7.00/month. No action needed if you wish to continue your subscription. To cancel or change your plan, visit your billing settings. Thank you for being a GitHub Pro member.",
-    "received_at": "2026-06-08T08:00:00Z"
+    "id": "mock-107",
+    "from": "anna.kowalski@enterprise-client.eu",
+    "from_name": "Anna Kowalski",
+    "subject": "Feature request: Multi-language support for our EU customers",
+    "body": "Hello Product Team, As we expand our operations across Europe, we urgently need multi-language support for the dashboard. Our customers in Germany, France, and Poland are requesting localized interfaces. This is blocking our Q3 expansion plans. Can we schedule a call to discuss timeline and pricing for this feature? We're willing to pay for priority development. Best regards, Anna",
+    "received_at": "2026-06-11T11:15:00Z"
   },
   {
-    "id": "mock-008",
-    "from": "security@auth-system.com",
-    "from_name": "Security Alert",
-    "subject": "ALERT: Database connection pool exhausted - all queries failing",
-    "body": "SEVERITY: HIGH\nComponent: PostgreSQL Database\nIssue: Connection pool exhausted (500/500 connections used)\nImpact: All API endpoints returning database errors\nStarted: 2026-06-08 09:15 UTC\nAffected services: API, Dashboard, Worker\nReason: Memory leak in worker process causing connection leaks\nRecommended action: Restart worker service, review connection cleanup code.",
-    "received_at": "2026-06-08T09:20:00Z"
+    "id": "mock-108",
+    "from": "billing@heroku.com",
+    "from_name": "Heroku",
+    "subject": "Your Heroku bill for May 2026 - $892.45",
+    "body": "Your Heroku bill for the billing period May 1-31, 2026 is ready. Total: $892.45. Breakdown: Dyno hours: $540, Postgres: $200, Redis: $100, Add-ons: $52.45. Payment will be charged to your card ending in 5566 on June 15, 2026. View detailed bill in dashboard.",
+    "received_at": "2026-06-11T00:10:00Z"
   },
   {
-    "id": "mock-009",
-    "from": "sarah.jones@startup-client.com",
-    "from_name": "Sarah Jones",
-    "subject": "Very disappointed with your service - considering switching providers",
-    "body": "Hi, I have been a customer for 2 years and I am extremely frustrated with the recent service degradation. The platform has been slow, we have had 3 outages this month, and your support team took 48 hours to respond to a critical issue. I am seriously considering moving to a competitor. Please get back to me urgently with a plan to address these issues.",
-    "received_at": "2026-06-08T13:00:00Z"
+    "id": "mock-109",
+    "from": "alerts@kubernetes.io",
+    "from_name": "K8s Cluster Monitor",
+    "subject": "Pod CrashLoopBackOff detected in production namespace",
+    "body": "WARNING: Multiple pods in CrashLoopBackOff state detected.\nNamespace: production\nDeployment: payment-service\nFailed pods: 3/5\nRestart count: 47 in last hour\nLast error: OutOfMemoryError - Java heap space\nNode: worker-node-07\nResource limits: 2Gi memory (currently using 2.1Gi)\nRecommendation: Increase memory limit or fix memory leak in application code.",
+    "received_at": "2026-06-11T12:45:00Z"
   },
   {
-    "id": "mock-010",
-    "from": "noreply@medium.com",
-    "from_name": "Medium Daily Digest",
-    "subject": "Stories from your network - Today's top reads",
-    "body": "Your daily Medium digest is ready. 5 new stories from writers you follow. Programming, AI, and productivity articles curated just for you. Unsubscribe from digest emails. View in browser.",
-    "received_at": "2026-06-08T07:30:00Z"
+    "id": "mock-110",
+    "from": "noreply@twitter.com",
+    "from_name": "X (Twitter)",
+    "subject": "You have 12 new followers this week",
+    "body": "Hi! You gained 12 new followers this week. Your most popular tweet got 234 likes. Check out your weekly analytics and see what's trending in your network. Manage notifications",
+    "received_at": "2026-06-11T08:00:00Z"
   },
   {
-    "id": "mock-011",
-    "from": "billing@aws.amazon.com",
-    "from_name": "AWS Billing",
-    "subject": "Your AWS bill is ready - Unusual charges detected",
-    "body": "Your AWS bill for May 2026 is $4,892.34, which is 340% higher than your previous month ($1,101.22). Unusual charges have been detected in EC2 and data transfer. This may indicate unauthorized usage or a configuration error. Please review your usage immediately. Unrecognized charges should be reported within 30 days.",
-    "received_at": "2026-06-08T12:00:00Z"
+    "id": "mock-111",
+    "from": "compliance@gdpr-authority.eu",
+    "from_name": "EU Data Protection Authority",
+    "subject": "Formal investigation notice - GDPR Article 30 compliance review",
+    "body": "NOTICE OF INVESTIGATION\nReference: GDPR-2026-EU-4471\nCompany: Your Company Ltd\nSubject: Formal investigation into compliance with GDPR Article 30 (Records of processing activities)\nDeadline for response: 30 days from receipt\nRequired documentation: Data processing records, DPO contact details, privacy impact assessments\nFailure to comply may result in administrative fines up to €10 million or 2% of global annual turnover. Legal counsel should be consulted immediately.",
+    "received_at": "2026-06-11T13:20:00Z"
   },
   {
-    "id": "mock-012",
-    "from": "deals@shopify-partner.com",
-    "from_name": "Shopify Partner Network",
-    "subject": "New partner resources available this week",
-    "body": "Hello partner! We have updated our resource library with new guides, templates, and marketing materials. Log in to your partner portal to access these resources. Questions? Contact partner-support@shopify.com. Unsubscribe from partner emails.",
-    "received_at": "2026-06-08T09:00:00Z"
+    "id": "mock-112",
+    "from": "support@zoom.com",
+    "from_name": "Zoom Support",
+    "subject": "Your Zoom Pro subscription expires in 7 days",
+    "body": "Hi there, Your Zoom Pro subscription will expire on June 18, 2026. After expiration, your account will revert to the Basic plan with a 40-minute meeting limit. To continue enjoying unlimited meetings, cloud recording, and advanced features, please renew your subscription. Current price: $13.33/month billed annually. Renew now",
+    "received_at": "2026-06-11T09:00:00Z"
   },
   {
-    "id": "mock-013",
-    "from": "ops-alert@pagerduty.com",
-    "from_name": "PagerDuty",
-    "subject": "TRIGGERED: High error rate - 500 errors spiking to 45%",
-    "body": "Incident #INC-44821 has been triggered.\nService: Production API\nAlert: Error rate threshold exceeded\nCurrent error rate: 45% (threshold: 5%)\nAffected endpoints: /api/v2/payments, /api/v2/users\nStarted: 2026-06-08T11:30:00Z\nOn-call: DevOps Team\nAcknowledge this incident immediately.",
-    "received_at": "2026-06-08T11:32:00Z"
+    "id": "mock-113",
+    "from": "thomas.mueller@angry-customer.de",
+    "from_name": "Thomas Mueller",
+    "subject": "FURIOUS: Third time my data was lost - demanding immediate compensation",
+    "body": "To Whom It May Concern, This is absolutely unacceptable! For the THIRD time this quarter, my exported data has been lost due to your system errors. I've spent countless hours recreating reports that your platform was supposed to safeguard. I demand: 1) Full refund for the past 3 months ($450), 2) Written apology from your CEO, 3) Guarantee this won't happen again with SLA penalties. If this is not resolved within 24 hours, I will: - Terminate my contract immediately - Post negative reviews on G2 and Capterra - Report to consumer protection agencies I expect your response by tomorrow 5 PM CET.",
+    "received_at": "2026-06-11T14:30:00Z"
   },
   {
-    "id": "mock-014",
-    "from": "contact@newsletter-service.com",
-    "from_name": "Digital Marketing Weekly",
-    "subject": "5 marketing strategies you need to know in 2026",
-    "body": "This week we cover the top 5 digital marketing strategies for 2026. From AI-powered content to social media trends. Read our latest newsletter to stay ahead of the competition. Unsubscribe | View online | Privacy policy.",
-    "received_at": "2026-06-08T08:45:00Z"
+    "id": "mock-114",
+    "from": "digest@hackernewsletter.com",
+    "from_name": "Hacker Newsletter",
+    "subject": "Top stories from Hacker News this week",
+    "body": "This week's top stories: 1) Show HN: I built a privacy-focused email client, 2) Why Rust is winning the systems programming war, 3) The hidden costs of microservices, 4) How we scaled to 1M users with $0 marketing budget. Read more at hackernewsletter.com. Unsubscribe",
+    "received_at": "2026-06-11T07:00:00Z"
   },
   {
-    "id": "mock-015",
-    "from": "michael.chen@corporate-enterprise.com",
-    "from_name": "Michael Chen",
-    "subject": "Chargeback dispute - Transaction ID #TXN-928471",
-    "body": "We are filing a chargeback dispute for transaction #TXN-928471 dated May 15, 2026 for $3,200.00. The services promised were not delivered as per our contract. We have notified our bank. If you wish to contest this chargeback, please provide proof of delivery within 7 business days. Contact: legal@corporate-enterprise.com",
-    "received_at": "2026-06-08T14:00:00Z"
+    "id": "mock-115",
+    "from": "security@github.com",
+    "from_name": "GitHub Security",
+    "subject": "Vulnerability detected in your repository dependencies",
+    "body": "SECURITY ALERT\nRepository: your-org/main-api\nSeverity: HIGH\nVulnerability: CVE-2026-1847 - Remote Code Execution\nAffected package: lodash@4.17.20\nFixed version: lodash@4.17.21\nImpact: Attackers can execute arbitrary code on your server\nDependabot has created a security patch. Please review and merge immediately. View details: github.com/your-org/main-api/security",
+    "received_at": "2026-06-11T15:10:00Z"
   },
   {
-    "id": "mock-016",
-    "from": "no-reply@spotify.com",
-    "from_name": "Spotify",
-    "subject": "Your Spotify Premium subscription renewed",
-    "body": "Your Spotify Premium subscription has been renewed for another month. You have been charged $9.99. Your subscription is active until July 8, 2026. Manage your subscription in Account Settings. Need help? Visit our Help Center.",
-    "received_at": "2026-06-08T00:01:00Z"
+    "id": "mock-116",
+    "from": "hr@company.com",
+    "from_name": "HR Team",
+    "subject": "Reminder: Submit your timesheets by Friday 5 PM",
+    "body": "Hi Team, This is a friendly reminder to submit your weekly timesheets by Friday 5:00 PM. Late submissions may delay payroll processing. If you have any issues, contact hr@company.com. Thank you!",
+    "received_at": "2026-06-11T10:30:00Z"
   },
   {
-    "id": "mock-017",
-    "from": "devops@internal-monitoring.com",
-    "from_name": "Infrastructure Monitor",
-    "subject": "CRITICAL: Disk usage at 97% on prod-db-01 - immediate action required",
-    "body": "CRITICAL ALERT\nHost: prod-db-01\nDisk Usage: 97% (threshold: 90%)\nFree Space: 3.2 GB remaining\nImpact: Database writes will fail when disk is full, causing complete service outage\nEstimated time to full: 2 hours at current write rate\nAction required: Clean up old logs, expand disk, or archive data immediately.",
-    "received_at": "2026-06-08T15:00:00Z"
+    "id": "mock-117",
+    "from": "billing@openai.com",
+    "from_name": "OpenAI Billing",
+    "subject": "Unusual API usage spike detected - potential unauthorized access",
+    "body": "SECURITY NOTICE: We detected unusual API usage on your account.\nAccount: your-org\nTime period: Last 24 hours\nTokens consumed: 12.5M (normal: 500K)\nSpend: $187.50 (normal: $7.50)\nIncrease: 2,400% above baseline\nSuspicious patterns: Multiple API keys used from unknown IP addresses\nIf this was not authorized, immediately: 1) Rotate all API keys, 2) Enable IP restrictions, 3) Contact support@openai.com. We've temporarily rate-limited your account to prevent further charges.",
+    "received_at": "2026-06-11T16:00:00Z"
   },
   {
-    "id": "mock-018",
-    "from": "spam@prizewinner-2026.com",
-    "from_name": "Prize Winner Notification",
-    "subject": "You've won! Claim your $10,000 prize - limited time",
-    "body": "CONGRATULATIONS! You have been randomly selected as our lucky winner. Claim your $10,000 prize now! Just click the link and enter your details. Offer expires in 24 hours. This is not spam - you are a genuine winner! Unsubscribe if you don't want more offers.",
-    "received_at": "2026-06-08T05:00:00Z"
+    "id": "mock-118",
+    "from": "marketing@salesforce.com",
+    "from_name": "Salesforce",
+    "subject": "You're invited: Salesforce Connections+ event in San Francisco",
+    "body": "Join us at Salesforce Connections+ 2026! Dates: September 15-17, 2026. Location: Moscone Center, San Francisco. Learn about the latest AI innovations, network with industry leaders, and discover how to transform your business. Early bird registration: $799 (regular $1,299). Register now and save $500!",
+    "received_at": "2026-06-11T11:00:00Z"
   },
   {
-    "id": "mock-019",
-    "from": "emily.watson@key-account.com",
-    "from_name": "Emily Watson",
-    "subject": "Urgent: API integration completely broken after your last update",
-    "body": "Hi Support Team, Since your platform update last night, our entire API integration has stopped working. We are getting 401 authentication errors on all endpoints despite using valid API keys. This is blocking our entire workflow - we process over 500 transactions per hour through your API. We need this fixed immediately. Our technical team is standing by. Please escalate this to your highest priority.",
-    "received_at": "2026-06-08T16:00:00Z"
+    "id": "mock-119",
+    "from": "ops@elasticsearch.com",
+    "from_name": "Elastic Cloud",
+    "subject": "Cluster health RED - primary shards unassigned",
+    "body": "CRITICAL ALERT\nCluster: prod-logs-cluster\nStatus: RED\nUnassigned shards: 12 primary, 24 replica\nCause: Node elasticsearch-prod-03 ran out of disk space (95% used)\nImpact: Search queries failing, log ingestion halted\nAffected indices: logs-2026.06.11, logs-2026.06.10\nImmediate action required: 1) Free up disk space on elasticsearch-prod-03, 2) Expand storage capacity, 3) Reallocate shards. Estimated recovery time after disk cleanup: 45 minutes.",
+    "received_at": "2026-06-11T17:20:00Z"
   },
   {
-    "id": "mock-020",
-    "from": "team@producthunt.com",
-    "from_name": "Product Hunt",
-    "subject": "Product Hunt Daily - Today's top products",
-    "body": "Good morning! Here are today's top products on Product Hunt. Discover new tools, apps, and services launched today by makers from around the world. Browse, upvote, and comment. Unsubscribe from daily digest.",
-    "received_at": "2026-06-08T06:00:00Z"
-  },
-  {
-    "id": "mock-021",
-    "from": "billing@cloudprovider.com",
-    "from_name": "Cloud Provider Billing",
-    "subject": "URGENT: Payment Failed - Service Suspension Imminent",
-    "body": "Your payment of $299.99 has failed. Your services will be suspended in 24 hours unless you update your payment method immediately.",
-    "date": "2026-06-11T10:30:00Z"
-  },
-  {
-    "id": "mock-022",
-    "from": "alerts@monitoring.io",
-    "from_name": "Server Monitoring",
-    "subject": "CRITICAL: Production Server Down - CPU at 100%",
-    "body": "Alert: Server prod-web-01 is unresponsive. CPU usage at 100%, memory exhausted. Immediate action required.",
-    "date": "2026-06-11T09:15:00Z"
-  },
-  {
-    "id": "mock-023",
-    "from": "angry.customer@email.com",
-    "from_name": "John Smith",
-    "subject": "Extremely Disappointed - Demanding Refund",
-    "body": "This is completely unacceptable! I've been waiting 3 weeks for a response. I want a full refund immediately or I'm taking legal action.",
-    "date": "2026-06-11T08:45:00Z"
-  },
-  {
-    "id": "mock-024",
-    "from": "newsletter@techblog.com",
-    "from_name": "Tech Blog Daily",
-    "subject": "Your Weekly Digest - Top 10 Stories",
-    "body": "Here are this week's top stories in technology. Click here to read more about AI, cloud computing, and more!",
-    "date": "2026-06-11T07:00:00Z"
-  },
-  {
-    "id": "mock-025",
-    "from": "security@yourbank.com",
-    "from_name": "Security Team",
-    "subject": "Suspicious Activity Detected on Your Account",
-    "body": "We detected unusual login activity from an unknown device. Please verify your identity immediately.",
-    "date": "2026-06-11T06:30:00Z"
-  },
-  {
-    "id": "mock-026",
-    "from": "promotions@shopping.com",
-    "from_name": "Shopping Deals",
-    "subject": "🎉 50% OFF Everything - Limited Time Only!",
-    "body": "Don't miss out! Get 50% off all items today only. Use code SAVE50 at checkout. Shop now!",
-    "date": "2026-06-10T15:00:00Z"
-  },
-  {
-    "id": "mock-027",
-    "from": "support@saasplatform.com",
-    "from_name": "SaaS Platform",
-    "subject": "Your Subscription Expires in 3 Days",
-    "body": "Your annual subscription will expire on June 14, 2026. Renew now to continue enjoying our services.",
-    "date": "2026-06-10T12:00:00Z"
-  },
-  {
-    "id": "mock-028",
-    "from": "noreply@github.com",
-    "from_name": "GitHub",
-    "subject": "New pull request in your repository",
-    "body": "user123 created a pull request in your repository. Review the changes and merge if approved.",
-    "date": "2026-06-10T10:00:00Z"
+    "id": "mock-120",
+    "from": "sophie.laurent@premium-client.fr",
+    "from_name": "Sophie Laurent",
+    "subject": "Contract renewal discussion - requesting 15% discount for 3-year commitment",
+    "body": "Dear Sales Team, Our current enterprise contract expires on August 31, 2026. We've been very satisfied with your platform and would like to renew for a 3-year term. However, given our loyalty and the volume of our usage (500+ users), we request a 15% discount on the standard enterprise pricing. We're also evaluating your competitors who have offered us significant discounts. Can we schedule a meeting next week to discuss? We need a decision by July 15 to align with our budget planning. Cordialement, Sophie Laurent, CTO",
+    "received_at": "2026-06-11T13:45:00Z"
   }
-
 ]
