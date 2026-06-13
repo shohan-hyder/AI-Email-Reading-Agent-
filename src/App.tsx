@@ -238,11 +238,9 @@ export function App() {
     try {
       const backendUrl = import.meta.env.VITE_API_URL || import.meta.env.VITE_AGENT_URL || 'http://localhost:3001'
       
-      // Fetch notifications from backend
       const response = await fetch(`${backendUrl}/notifications?limit=100`)
       if (response.ok) {
         const data = await response.json()
-        // Handle both formats: {notifications: [...]} or direct array
         const emails = Array.isArray(data) ? data : (data.notifications || [])
         setNotifications(emails as EmailNotification[])
       } else {
@@ -250,7 +248,6 @@ export function App() {
         setNotifications([])
       }
       
-      // Try to fetch from Supabase as fallback (if configured)
       try {
         const { data: runs } = await supabase
           .from('agent_runs')
@@ -316,13 +313,11 @@ export function App() {
 
       onProgress('✓ Agent triggered, processing emails...')
       
-      // Wait a moment for backend to process
       await new Promise((resolve) => setTimeout(resolve, 1500))
       onProgress('Fetching updated notifications...')
       await fetchData()
       onProgress('✓ Complete!')
       
-      // Set mock stats
       const stats = { processed: 20, flagged: 10, skipped: 0, errors: 0 }
       setRunStats(stats as any)
       setLastRun(new Date())
@@ -349,7 +344,6 @@ export function App() {
   const handleMarkAllRead = useCallback(async () => {
     try {
       const backendUrl = import.meta.env.VITE_API_URL || import.meta.env.VITE_AGENT_URL || 'http://localhost:3001'
-      // Mark each notification as read
       await Promise.all(
         notifications
           .filter((n) => !n.is_read)
@@ -497,18 +491,26 @@ export function App() {
                 </button>
               ))}
 
-              <Separator orientation="vertical" className="h-4" />
+              <Separator orientation="vertical" className="h-4 hidden sm:block" />
 
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="outline" size="xs" className="h-7">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="h-7 text-xs"
+                  >
                     {filterCategory === 'ALL'
                       ? 'All Categories'
                       : (CATEGORY_META[filterCategory]?.label || filterCategory)}
-                    <ChevronDown className="size-3" />
+                    <ChevronDown className="size-3 ml-1" />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="w-48">
+                <DropdownMenuContent 
+                  align="start" 
+                  className="w-48 max-h-64 overflow-y-auto"
+                  sideOffset={4}
+                >
                   <DropdownMenuItem onClick={() => setFilterCategory('ALL')}>
                     All Categories
                   </DropdownMenuItem>
@@ -517,8 +519,12 @@ export function App() {
                     const meta = CATEGORY_META[cat]
                     const Icon = meta?.icon || Inbox
                     return (
-                      <DropdownMenuItem key={cat} onClick={() => setFilterCategory(cat)}>
-                        <Icon className={cn('size-4', meta?.color)} />
+                      <DropdownMenuItem 
+                        key={cat} 
+                        onClick={() => setFilterCategory(cat)}
+                        className="flex items-center gap-2"
+                      >
+                        <Icon className={cn('size-3', meta?.color)} />
                         {meta?.label || cat}
                       </DropdownMenuItem>
                     )
