@@ -3,27 +3,27 @@
 
 An intelligent, production-ready email triage system that automatically reads incoming emails, classifies their importance using a hybrid AI approach, and displays critical notifications on a real-time dashboard. Built with a modern stack (React, Node.js, Supabase) and deployed on Vercel & Render.
 
-**Status**: ✅ Production-Ready | 📊 100/100 Marking Points Coverage | 🐳 Docker Ready
+Status: ✅ Production-Ready | 📊 100/100 Marking Points Coverage | 🐳 Docker Ready
 
 ---
 
 ## 🌐 Live Demo & Links
 
-- **🖥️ Live Dashboard:** [https://ai-email-reading-agent-psi.vercel.app]
-- **⚙️ Backend API:** [https://ai-email-reading-agent.onrender.com]
-- **💻 GitHub Repository:** [https://github.com/shohan-hyder/AI-Email-Reading-Agent-]
+- 🖥️ Live Dashboard: [https://ai-email-reading-agent-psi.vercel.app]
+- ⚙️ Backend API: [https://ai-email-reading-agent.onrender.com]
+- 💻 GitHub Repository: [https://github.com/shohan-hyder/AI-Email-Reading-Agent-]
 
 ---
 
 ## 🎯 Features
 
-- **🤖 Hybrid AI Classification** — Combines Google Gemini API for nuanced reasoning with a robust Rule-based fallback (100+ regex patterns) to ensure 100% uptime even when API quotas are exceeded.
-- **📊 Real-time Dashboard** — Beautiful React + TypeScript UI (shadcn/ui) displaying all required notification fields with dark/light mode.
-- **🎪 Mock Mode** — 40 curated test emails covering all categories and priorities. No credentials needed for instant testing.
-- **🔐 Duplicate Prevention** — Processed email IDs are stored in Supabase PostgreSQL. An email is never shown twice.
-- **⏰ Continuous Polling** — Agent runs automatically on a configurable interval (default: 2 minutes).
-- **🐳 Docker Ready** — Full stack deployment with a single command: `docker compose up --build`.
-- **☁️ Cloud Native** — Uses Supabase for persistent cloud storage, ensuring data survives server restarts.
+- 🤖 Hybrid AI Classification — Combines Google Gemini API for nuanced reasoning with a robust Rule-based fallback (100+ regex patterns) to ensure 100% uptime even when API quotas are exceeded.
+- 📊 Real-time Dashboard — Beautiful React + TypeScript UI (shadcn/ui) displaying all required notification fields with dark/light mode.
+- 🎪 Mock Mode — 40 curated test emails covering all categories and priorities. No credentials needed for instant testing.
+- 🔐 Duplicate Prevention — Processed email IDs are stored in Supabase PostgreSQL. An email is never shown twice.
+- ⏰ Continuous Polling — Agent runs automatically on a configurable interval (default: 2 minutes).
+- 🐳 Docker Ready — Full stack deployment with a single command: `docker compose up --build`.
+- ☁️ Cloud Native — Uses Supabase for persistent cloud storage, ensuring data survives server restarts.
 
 ---
 
