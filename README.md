@@ -302,5 +302,3 @@ AI-Email-Reading-Agent-/
 - **Render Free Tier:** The backend spins down after 15 minutes of inactivity. The first request after a sleep period may take ~30 seconds to wake up.
 - **IMAP Mode:** Currently running in mandatory mock mode for demo purposes. IMAP code is fully implemented but requires a real Gmail App Password to activate in production.
 - **Read-Only:** The system only reads and classifies emails; it does not send replies or delete emails from the inbox.
-
-```
