@@ -1,162 +1,162 @@
 [
   {
-    "id": "mock-101",
-    "from": "payments@paypal.com",
-    "from_name": "PayPal",
-    "subject": "Action Required: Your linked bank account has been declined",
-    "body": "Dear User, We attempted to process a payment of $156.00 to your vendor, but your linked bank account (ending in 8821) was declined by the issuing bank. This may result in late fees or service interruption. Please update your payment method within 48 hours to avoid account restrictions. Transaction ID: PP-20260611-8847.",
-    "received_at": "2026-06-11T07:45:00Z"
+    "id": "mock-041",
+    "from": "noreply@github.com",
+    "from_name": "GitHub Security",
+    "subject": "Security alert: New sign-in from Chrome on Windows",
+    "body": "Hi there,\n\nWe noticed a new sign-in to your GitHub account from:\n\nDevice: Chrome 125.0 on Windows 11\nLocation: Dhaka, Bangladesh\nIP: 103.48.16.***\nTime: June 11, 2026 at 3:42 PM UTC\n\nIf this was you, you can safely ignore this email. If you don't recognize this activity, please secure your account immediately.\n\nThanks,\nThe GitHub Team",
+    "received_at": "2026-06-11T15:42:00Z"
   },
   {
-    "id": "mock-102",
-    "from": "ops@datadog.com",
-    "from_name": "Datadog Monitoring",
-    "subject": "[CRITICAL] Redis cluster unreachable - cache failures at 100%",
-    "body": "ALERT TYPE: CRITICAL\nService: Redis Production Cluster\nStatus: UNREACHABLE\nStarted: 2026-06-11T08:12:33Z\nDuration: 14 minutes\nImpact: All cache lookups failing, fallback to database causing 8x latency increase\nError rate: 100% of cache operations\nAffected hosts: redis-prod-01, redis-prod-02, redis-prod-03\nPagerDuty incident triggered. On-call engineer notified.",
-    "received_at": "2026-06-11T08:15:00Z"
+    "id": "mock-042",
+    "from": "billing@digitalocean.com",
+    "from_name": "DigitalOcean Billing",
+    "subject": "Payment method update required - Action needed",
+    "body": "Dear Customer,\n\nYour payment method on file (Visa ending in 4242) has expired. Please update your billing information within 48 hours to avoid service interruption.\n\nCurrent balance: $127.50\nNext billing date: June 15, 2026\n\nUpdate payment method: https://cloud.digitalocean.com/account/billing\n\nIf you have any questions, please contact our billing team.\n\nRegards,\nDigitalOcean Billing Team",
+    "received_at": "2026-06-11T09:15:00Z"
   },
   {
-    "id": "mock-103",
-    "from": "marcus.johnson@fintech-corp.com",
-    "from_name": "Marcus Johnson",
-    "subject": "Re: Invoice dispute - $45,000 overcharged for Q1 services",
-    "body": "Hi Finance Team, I'm writing to formally dispute Invoice #INV-2026-Q1-0342 for $45,230. Our records show we were only contracted for $32,000 worth of services in Q1. We have been overcharged by $13,230. I've attached our signed contract and usage logs as evidence. Please issue a credit note within 5 business days or we will escalate this to our legal department. This is the second billing error in three months and it's becoming a serious concern.",
-    "received_at": "2026-06-11T09:30:00Z"
+    "id": "mock-043",
+    "from": "monitoring@datadog.com",
+    "from_name": "Datadog Alerts",
+    "subject": "[WARNING] API latency increased to 2.3s (threshold: 500ms)",
+    "body": "⚠️ ALERT TRIGGERED\n\nMetric: api.request.latency.p95\nCurrent value: 2.3s\nThreshold: 500ms\nDuration: 15 minutes\n\nAffected endpoints:\n- /api/v2/users (3.1s)\n- /api/v2/orders (2.8s)\n- /api/v2/products (1.9s)\n\nPossible causes:\n- Database connection pool exhaustion\n- Increased traffic volume\n- Memory pressure on app servers\n\nView dashboard: https://app.datadoghq.com/dashboard/abc123\n\nThis alert will auto-resolve when latency returns to normal.",
+    "received_at": "2026-06-11T14:23:00Z"
   },
   {
-    "id": "mock-104",
-    "from": "news@substack.com",
-    "from_name": "The AI Weekly",
-    "subject": "This week in AI: GPT-5 rumors, new open-source models, and more",
-    "body": "Hey there! This week's top stories: 1) OpenAI hints at GPT-5 release, 2) Meta releases Llama 4 open weights, 3) EU AI Act enforcement begins, 4) Startup raises $200M for AI chips. Read all 12 stories on our website. Don't miss next week's edition! Unsubscribe",
-    "received_at": "2026-06-11T06:00:00Z"
+    "id": "mock-044",
+    "from": "sarah.johnson@enterprise-client.com",
+    "from_name": "Sarah Johnson - CTO",
+    "subject": "Re: Quarterly business review - scheduling conflict",
+    "body": "Hi Team,\n\nI need to reschedule our QBR meeting originally set for June 20th. Our CEO just booked an all-hands meeting that day.\n\nCan we move it to either:\n- June 22nd at 2 PM EST\n- June 24th at 10 AM EST\n- June 25th at 3 PM EST\n\nPlease let me know what works for your team. Apologies for the inconvenience.\n\nBest regards,\nSarah Johnson\nChief Technology Officer\nEnterprise Client Inc.",
+    "received_at": "2026-06-11T11:30:00Z"
   },
   {
-    "id": "mock-105",
-    "from": "security@cloudflare.com",
-    "from_name": "Cloudflare Security",
-    "subject": "URGENT: SSL certificate expires in 48 hours - immediate renewal required",
-    "body": "CRITICAL SECURITY NOTICE\nDomain: api.yourdomain.com\nCertificate Type: Wildcard SSL\nExpiration: 2026-06-13T23:59:59Z (48 hours)\nIssuer: Let's Encrypt\nIf not renewed, all HTTPS traffic will fail with security warnings, and API clients will reject connections. Auto-renewal failed due to DNS validation error. Manual intervention required immediately.",
-    "received_at": "2026-06-11T10:00:00Z"
-  },
-  {
-    "id": "mock-106",
-    "from": "deals@aliexpress.com",
-    "from_name": "AliExpress",
-    "subject": "🎁 FLASH SALE: Up to 90% OFF + FREE shipping worldwide!",
-    "body": "HUGE FLASH SALE! Get up to 90% off on electronics, fashion, home & garden. Use code FLASH90 for extra 10% off. Free shipping on orders over $10. Sale ends in 6 hours! Shop now before items sell out! Unsubscribe",
-    "received_at": "2026-06-11T05:30:00Z"
-  },
-  {
-    "id": "mock-107",
-    "from": "anna.kowalski@enterprise-client.eu",
-    "from_name": "Anna Kowalski",
-    "subject": "Feature request: Multi-language support for our EU customers",
-    "body": "Hello Product Team, As we expand our operations across Europe, we urgently need multi-language support for the dashboard. Our customers in Germany, France, and Poland are requesting localized interfaces. This is blocking our Q3 expansion plans. Can we schedule a call to discuss timeline and pricing for this feature? We're willing to pay for priority development. Best regards, Anna",
-    "received_at": "2026-06-11T11:15:00Z"
-  },
-  {
-    "id": "mock-108",
-    "from": "billing@heroku.com",
-    "from_name": "Heroku",
-    "subject": "Your Heroku bill for May 2026 - $892.45",
-    "body": "Your Heroku bill for the billing period May 1-31, 2026 is ready. Total: $892.45. Breakdown: Dyno hours: $540, Postgres: $200, Redis: $100, Add-ons: $52.45. Payment will be charged to your card ending in 5566 on June 15, 2026. View detailed bill in dashboard.",
-    "received_at": "2026-06-11T00:10:00Z"
-  },
-  {
-    "id": "mock-109",
-    "from": "alerts@kubernetes.io",
-    "from_name": "K8s Cluster Monitor",
-    "subject": "Pod CrashLoopBackOff detected in production namespace",
-    "body": "WARNING: Multiple pods in CrashLoopBackOff state detected.\nNamespace: production\nDeployment: payment-service\nFailed pods: 3/5\nRestart count: 47 in last hour\nLast error: OutOfMemoryError - Java heap space\nNode: worker-node-07\nResource limits: 2Gi memory (currently using 2.1Gi)\nRecommendation: Increase memory limit or fix memory leak in application code.",
-    "received_at": "2026-06-11T12:45:00Z"
-  },
-  {
-    "id": "mock-110",
-    "from": "noreply@twitter.com",
-    "from_name": "X (Twitter)",
-    "subject": "You have 12 new followers this week",
-    "body": "Hi! You gained 12 new followers this week. Your most popular tweet got 234 likes. Check out your weekly analytics and see what's trending in your network. Manage notifications",
+    "id": "mock-045",
+    "from": "no-reply@linkedin.com",
+    "from_name": "LinkedIn",
+    "subject": "You appeared in 127 searches this week",
+    "body": "Hi Shohan,\n\nYou're in demand! You appeared in 127 recruiter searches this week.\n\nTop search titles looking for people like you:\n- Software Engineer\n- Full Stack Developer\n- AI Engineer\n\nCompanies viewing your profile:\n- Google\n- Microsoft\n- Amazon\n- Meta\n\nUpgrade to Premium to see who viewed your profile and message recruiters directly.\n\n[Upgrade Now] [No thanks]",
     "received_at": "2026-06-11T08:00:00Z"
   },
   {
-    "id": "mock-111",
-    "from": "compliance@gdpr-authority.eu",
-    "from_name": "EU Data Protection Authority",
-    "subject": "Formal investigation notice - GDPR Article 30 compliance review",
-    "body": "NOTICE OF INVESTIGATION\nReference: GDPR-2026-EU-4471\nCompany: Your Company Ltd\nSubject: Formal investigation into compliance with GDPR Article 30 (Records of processing activities)\nDeadline for response: 30 days from receipt\nRequired documentation: Data processing records, DPO contact details, privacy impact assessments\nFailure to comply may result in administrative fines up to €10 million or 2% of global annual turnover. Legal counsel should be consulted immediately.",
+    "id": "mock-046",
+    "from": "alerts@pagerduty.com",
+    "from_name": "PagerDuty",
+    "subject": "🔴 CRITICAL: Production database failover initiated",
+    "body": "INCIDENT #INC-2026-0611-001\nSeverity: Critical\nStatus: Acknowledged\nCreated: 2026-06-11 16:45:32 UTC\n\nService: Production PostgreSQL Cluster\nAlert: Primary node unreachable\n\nAutomated actions taken:\n✓ Failover to replica initiated\n✓ Read replicas promoted\n✓ Connection strings updated\n\nCurrent status:\n- Primary: UNREACHABLE (prod-db-01)\n- New Primary: ACTIVE (prod-db-02)\n- Data loss: 0 transactions\n- Downtime: 47 seconds\n\nOn-call engineer: DevOps Team\nEscalation policy: Production Critical\n\nJoin incident war room: https://pagerduty.com/incidents/INC-2026-0611-001",
+    "received_at": "2026-06-11T16:45:00Z"
+  },
+  {
+    "id": "mock-047",
+    "from": "support@stripe.com",
+    "from_name": "Stripe Support",
+    "subject": "Dispute created for charge ch_3N8K2mL5J6K7H8I9",
+    "body": "A dispute has been created for the following charge:\n\nAmount: $299.00 USD\nCustomer: customer_123456\nCard: Visa •••• 4242\nDispute reason: Fraudulent\nDispute ID: dp_1N8K2mL5J6K7H8I9\nDeadline to respond: June 25, 2026\n\nEvidence submitted by cardholder:\n\"I did not authorize this transaction. I never received the product or service.\"\n\nYou can respond to this dispute in your Dashboard. If you don't respond by the deadline, the dispute will be automatically lost and the funds will be refunded to the cardholder.\n\nView dispute: https://dashboard.stripe.com/disputes/dp_1N8K2mL5J6K7H8I9",
     "received_at": "2026-06-11T13:20:00Z"
   },
   {
-    "id": "mock-112",
-    "from": "support@zoom.com",
-    "from_name": "Zoom Support",
-    "subject": "Your Zoom Pro subscription expires in 7 days",
-    "body": "Hi there, Your Zoom Pro subscription will expire on June 18, 2026. After expiration, your account will revert to the Basic plan with a 40-minute meeting limit. To continue enjoying unlimited meetings, cloud recording, and advanced features, please renew your subscription. Current price: $13.33/month billed annually. Renew now",
-    "received_at": "2026-06-11T09:00:00Z"
-  },
-  {
-    "id": "mock-113",
-    "from": "thomas.mueller@angry-customer.de",
-    "from_name": "Thomas Mueller",
-    "subject": "FURIOUS: Third time my data was lost - demanding immediate compensation",
-    "body": "To Whom It May Concern, This is absolutely unacceptable! For the THIRD time this quarter, my exported data has been lost due to your system errors. I've spent countless hours recreating reports that your platform was supposed to safeguard. I demand: 1) Full refund for the past 3 months ($450), 2) Written apology from your CEO, 3) Guarantee this won't happen again with SLA penalties. If this is not resolved within 24 hours, I will: - Terminate my contract immediately - Post negative reviews on G2 and Capterra - Report to consumer protection agencies I expect your response by tomorrow 5 PM CET.",
-    "received_at": "2026-06-11T14:30:00Z"
-  },
-  {
-    "id": "mock-114",
-    "from": "digest@hackernewsletter.com",
-    "from_name": "Hacker Newsletter",
-    "subject": "Top stories from Hacker News this week",
-    "body": "This week's top stories: 1) Show HN: I built a privacy-focused email client, 2) Why Rust is winning the systems programming war, 3) The hidden costs of microservices, 4) How we scaled to 1M users with $0 marketing budget. Read more at hackernewsletter.com. Unsubscribe",
+    "id": "mock-048",
+    "from": "newsletter@techcrunch.com",
+    "from_name": "TechCrunch",
+    "subject": "TC Daily: AI startup raises $500M, Apple's new VR headset",
+    "body": "Good morning! Here's what's happening in tech today:\n\n🚀 FUNDING\n- AI coding assistant startup Cursor raises $500M Series D at $10B valuation\n- Fintech unicorn Revolut files for IPO in London\n\n🍎 APPLE\n- Apple Vision Pro 2 rumored to launch in Q4 2026\n- Price drop expected: $2,499 → $1,999\n\n🤖 AI NEWS\n- OpenAI announces GPT-5 training complete, release date TBD\n- Google DeepMind achieves breakthrough in protein folding\n\n📱 SOCIAL\n- Twitter/X introduces new verification tiers\n- TikTok hits 2 billion monthly active users\n\nRead more at techcrunch.com\n\nUnsubscribe | Manage preferences",
     "received_at": "2026-06-11T07:00:00Z"
   },
   {
-    "id": "mock-115",
-    "from": "security@github.com",
-    "from_name": "GitHub Security",
-    "subject": "Vulnerability detected in your repository dependencies",
-    "body": "SECURITY ALERT\nRepository: your-org/main-api\nSeverity: HIGH\nVulnerability: CVE-2026-1847 - Remote Code Execution\nAffected package: lodash@4.17.20\nFixed version: lodash@4.17.21\nImpact: Attackers can execute arbitrary code on your server\nDependabot has created a security patch. Please review and merge immediately. View details: github.com/your-org/main-api/security",
+    "id": "mock-049",
+    "from": "security@cloudflare.com",
+    "from_name": "Cloudflare Security",
+    "subject": "DDoS attack mitigated: 45M requests blocked",
+    "body": "SECURITY INCIDENT REPORT\n\nDomain: api.yourdomain.com\nAttack type: Layer 7 HTTP Flood\nDuration: 2 hours 34 minutes\nPeak volume: 180,000 req/sec\nTotal blocked: 45.2M requests\n\nAttack characteristics:\n- Source: Botnet (primarily China, Russia, Brazil)\n- Target: /api/v2/auth endpoint\n- Method: GET requests with random query parameters\n- User-Agent rotation: 500+ unique strings\n\nMitigation actions:\n✓ Rate limiting applied\n✓ Challenge page enabled for suspicious IPs\n✓ WAF rules updated\n\nService impact: None (100% availability maintained)\n\nView detailed analytics: https://dash.cloudflare.com/security",
+    "received_at": "2026-06-11T18:30:00Z"
+  },
+  {
+    "id": "mock-050",
+    "from": "michael.chen@partner-company.com",
+    "from_name": "Michael Chen",
+    "subject": "Partnership proposal: Integration opportunity",
+    "body": "Hi there,\n\nI'm Michael Chen, VP of Partnerships at Partner Company. We've been following your platform's growth and see strong synergy between our products.\n\nWe'd like to explore a potential integration partnership that could:\n- Expand your product capabilities\n- Provide mutual customers with seamless workflow\n- Create co-marketing opportunities\n\nWould you be open to a 30-minute call next week to discuss? I'm available:\n- Tuesday 2-4 PM EST\n- Wednesday 10 AM-12 PM EST\n- Thursday 3-5 PM EST\n\nLooking forward to connecting!\n\nBest,\nMichael Chen\nVP of Partnerships\nPartner Company\nmichael.chen@partner-company.com",
+    "received_at": "2026-06-11T10:15:00Z"
+  },
+  {
+    "id": "mock-051",
+    "from": "no-reply@aws.amazon.com",
+    "from_name": "AWS Billing",
+    "subject": "AWS Cost Anomaly Detection alert",
+    "body": "AWS Cost Anomaly Detection has identified unusual spending:\n\nAccount: 1234-5678-9012\nService: Amazon EC2\nAnomaly detected: June 10, 2026\nExpected cost: $450\nActual cost: $1,247\nVariance: +177% ($797 over expected)\n\nRoot cause analysis:\n- 3 new t3.2xlarge instances launched in us-east-1\n- Running for 72+ hours without termination\n- No associated Auto Scaling group\n\nRecommended actions:\n1. Review instance necessity\n2. Enable Auto Scaling if needed\n3. Set up billing alerts\n4. Consider Reserved Instances for long-term workloads\n\nView details: https://console.aws.amazon.com/costmanagement",
+    "received_at": "2026-06-11T06:00:00Z"
+  },
+  {
+    "id": "mock-052",
+    "from": "promotions@amazon.com",
+    "from_name": "Amazon",
+    "subject": "🎉 FLASH SALE: 60% off electronics + free same-day delivery!",
+    "body": "🔥 TODAY ONLY 🔥\n\nDon't miss our biggest flash sale of the year!\n\n⚡ 60% OFF Electronics\n⚡ 50% OFF Home & Kitchen\n⚡ 40% OFF Fashion\n⚡ FREE Same-Day Delivery on orders over $35\n\nTop deals:\n- Sony WH-1000XM5 Headphones: $349 → $139\n- Samsung 55\" 4K TV: $799 → $319\n- Apple Watch Series 9: $399 → $159\n\n⏰ Sale ends at midnight!\n\n[Shop Now]\n\n*While supplies last. Some restrictions apply.\n\nUnsubscribe from promotional emails",
+    "received_at": "2026-06-11T09:00:00Z"
+  },
+  {
+    "id": "mock-053",
+    "from": "hr@yourcompany.com",
+    "from_name": "HR Department",
+    "subject": "Reminder: Complete your annual performance review by Friday",
+    "body": "Dear Employee,\n\nThis is a friendly reminder to complete your annual performance review by Friday, June 14, 2026.\n\nAction items:\n✓ Self-assessment form (15 minutes)\n✓ Goal setting for next year (10 minutes)\n✓ Training needs assessment (5 minutes)\n\nAccess portal: https://hr.yourcompany.com/performance\n\nYour manager will schedule a review meeting after submission.\n\nQuestions? Contact hr@yourcompany.com\n\nThank you,\nHR Department",
+    "received_at": "2026-06-11T08:30:00Z"
+  },
+  {
+    "id": "mock-054",
+    "from": "alerts@newrelic.com",
+    "from_name": "New Relic",
+    "subject": "Apdex score dropped to 0.62 (threshold: 0.80)",
+    "body": "APPLICATION PERFORMANCE ALERT\n\nApplication: Production Web App\nMetric: Apdex Score\nCurrent: 0.62 (Poor)\nThreshold: 0.80 (Good)\nDuration: 45 minutes\n\nImpact analysis:\n- Slow transactions: 34% (was 8%)\n- Error rate: 2.3% (was 0.4%)\n- Throughput: 1,247 rpm (normal)\n\nSlowest transactions:\n1. GET /api/users/profile - 4.2s (p95)\n2. POST /api/orders - 3.8s (p95)\n3. GET /api/products - 2.9s (p95)\n\nPossible causes:\n- Database query performance degradation\n- External API latency increase\n- Memory pressure on app servers\n\nInvestigate: https://one.newrelic.com/dashboards",
     "received_at": "2026-06-11T15:10:00Z"
   },
   {
-    "id": "mock-116",
-    "from": "hr@company.com",
-    "from_name": "HR Team",
-    "subject": "Reminder: Submit your timesheets by Friday 5 PM",
-    "body": "Hi Team, This is a friendly reminder to submit your weekly timesheets by Friday 5:00 PM. Late submissions may delay payroll processing. If you have any issues, contact hr@company.com. Thank you!",
-    "received_at": "2026-06-11T10:30:00Z"
+    "id": "mock-055",
+    "from": "no-reply@zoom.us",
+    "from_name": "Zoom",
+    "subject": "Your cloud recording is ready: Team Standup - June 11",
+    "body": "Hi there,\n\nYour Zoom cloud recording is now ready to view.\n\nMeeting: Team Standup - June 11, 2026\nDuration: 32 minutes\nParticipants: 8\nRecorded by: John Smith\n\nView recording: https://zoom.us/rec/play/abc123\nPassword: xyz789\n\nRecording includes:\n✓ Video\n✓ Audio\n✓ Shared screen\n✓ Chat messages\n\nDownload options:\n- MP4 (Video): 245 MB\n- M4A (Audio only): 28 MB\n- TXT (Chat): 12 KB\n\nRecording will be available for 30 days.\n\nManage recordings: https://zoom.us/recording",
+    "received_at": "2026-06-11T14:00:00Z"
   },
   {
-    "id": "mock-117",
-    "from": "billing@openai.com",
-    "from_name": "OpenAI Billing",
-    "subject": "Unusual API usage spike detected - potential unauthorized access",
-    "body": "SECURITY NOTICE: We detected unusual API usage on your account.\nAccount: your-org\nTime period: Last 24 hours\nTokens consumed: 12.5M (normal: 500K)\nSpend: $187.50 (normal: $7.50)\nIncrease: 2,400% above baseline\nSuspicious patterns: Multiple API keys used from unknown IP addresses\nIf this was not authorized, immediately: 1) Rotate all API keys, 2) Enable IP restrictions, 3) Contact support@openai.com. We've temporarily rate-limited your account to prevent further charges.",
+    "id": "mock-056",
+    "from": "jennifer.williams@angry-customer.com",
+    "from_name": "Jennifer Williams",
+    "subject": "FURIOUS: 3rd outage this month - demanding compensation",
+    "body": "To Whom It May Concern,\n\nThis is ABSOLUTELY UNACCEPTABLE! For the THIRD TIME this month, your service has been down during our critical business hours.\n\nOutage details:\n- June 3: 2 hours (9-11 AM)\n- June 8: 4 hours (2-6 PM)\n- June 11: 3 hours (10 AM-1 PM)\n\nTotal downtime: 9 hours this month\nSLA guarantee: 99.9% uptime (max 43 minutes/month)\n\nFinancial impact:\n- Lost revenue: ~$15,000\n- Customer complaints: 47\n- Team productivity loss: 120 hours\n\nWe demand:\n1. Full refund for June ($2,400)\n2. Service credits for next 3 months\n3. Written explanation of root cause\n4. Concrete plan to prevent future outages\n\nIf this is not resolved within 24 hours, we will:\n- Terminate our contract immediately\n- Demand damages for breach of SLA\n- Post negative reviews on G2, Capterra, Trustpilot\n- Report to consumer protection agencies\n\nI expect your response by 5 PM tomorrow.\n\nJennifer Williams\nCTO, Angry Customer Corp\njennifer.williams@angry-customer.com\n(555) 123-4567",
+    "received_at": "2026-06-11T17:30:00Z"
+  },
+  {
+    "id": "mock-057",
+    "from": "no-reply@docker.com",
+    "from_name": "Docker Hub",
+    "subject": "Your pull rate limit warning: 85% used",
+    "body": "Docker Hub Pull Limit Warning\n\nAccount: your-username\nPlan: Free\nCurrent period: June 1-30, 2026\n\nPull usage: 850 / 1,000 (85%)\nRemaining: 150 pulls\nResets on: July 1, 2026\n\nRecent pulls:\n- nginx:latest (127 pulls)\n- node:20-alpine (89 pulls)\n- postgres:15 (67 pulls)\n- redis:7 (45 pulls)\n\nIf you exceed the limit:\n- Pulls will be throttled to 10/hour\n- Builds may fail\n- CI/CD pipelines will be affected\n\nUpgrade options:\n- Pro: $5/month - Unlimited pulls\n- Team: $9/month/user - Unlimited + priority support\n\nUpgrade: https://hub.docker.com/subscriptions\n\nQuestions? support@docker.com",
+    "received_at": "2026-06-11T12:00:00Z"
+  },
+  {
+    "id": "mock-058",
+    "from": "billing@salesforce.com",
+    "from_name": "Salesforce Billing",
+    "subject": "Invoice #INV-2026-0611 ready - $4,892.00",
+    "body": "Your Salesforce invoice is ready\n\nInvoice #: INV-2026-0611\nBilling period: May 1-31, 2026\nAmount due: $4,892.00 USD\nDue date: June 30, 2026\n\nBreakdown:\n- Sales Cloud Enterprise (50 users): $3,750.00\n- Service Cloud Professional (25 users): $875.00\n- Storage (500 GB): $150.00\n- API calls (overage): $117.00\n\nPayment method: Visa •••• 4242\nAuto-pay: Enabled (will charge on June 30)\n\nDownload invoice: https://login.salesforce.com/invoices/INV-2026-0611\n\nQuestions? Contact billing@salesforce.com",
+    "received_at": "2026-06-11T00:01:00Z"
+  },
+  {
+    "id": "mock-059",
+    "from": "no-reply@medium.com",
+    "from_name": "Medium",
+    "subject": "Your weekly digest: 5 stories you might have missed",
+    "body": "Hi Shohan,\n\nHere are this week's top stories based on your interests:\n\n1. \"Why I switched from React to Svelte\" \n   by Sarah Drasner · 8 min read\n\n2. \"The Complete Guide to Full-Stack TypeScript in 2026\"\n   by John Doe · 15 min read\n\n3. \"Building Scalable Microservices with Node.js\"\n   by Jane Smith · 12 min read\n\n4. \"AI-Powered Development: The Future is Here\"\n   by Alex Johnson · 10 min read\n\n5. \"Docker Best Practices for Production\"\n   by Mike Wilson · 9 min read\n\n[Read More on Medium]\n\nYou're receiving this because you're subscribed to Medium's weekly digest.\n\nUnsubscribe | Manage preferences",
+    "received_at": "2026-06-11T07:00:00Z"
+  },
+  {
+    "id": "mock-060",
+    "from": "ops@heroku.com",
+    "from_name": "Heroku Operations",
+    "subject": "Dyno quota warning: 92% of monthly hours used",
+    "body": "Heroku Dyno Quota Alert\n\nAccount: your-app-name\nPlan: Hobby ($7/month)\nBilling period: June 1-30, 2026\n\nDyno hours used: 662 / 720 (92%)\nRemaining: 58 hours\nEstimated exhaustion: June 28, 2026\n\nCurrent dynos:\n- web.1: Running (24/7)\n- worker.1: Running (24/7)\n\nWhen quota is exceeded:\n- Dynos will sleep\n- App will become unresponsive\n- Wake-up time: 30-60 seconds\n\nOptions:\n1. Scale down dynos to save hours\n2. Upgrade to Standard plan ($25/month, unlimited hours)\n3. Add more dyno hours ($0.05/hour)\n\nManage dynos: https://dashboard.heroku.com/apps/your-app\n\nQuestions? support@heroku.com",
     "received_at": "2026-06-11T16:00:00Z"
-  },
-  {
-    "id": "mock-118",
-    "from": "marketing@salesforce.com",
-    "from_name": "Salesforce",
-    "subject": "You're invited: Salesforce Connections+ event in San Francisco",
-    "body": "Join us at Salesforce Connections+ 2026! Dates: September 15-17, 2026. Location: Moscone Center, San Francisco. Learn about the latest AI innovations, network with industry leaders, and discover how to transform your business. Early bird registration: $799 (regular $1,299). Register now and save $500!",
-    "received_at": "2026-06-11T11:00:00Z"
-  },
-  {
-    "id": "mock-119",
-    "from": "ops@elasticsearch.com",
-    "from_name": "Elastic Cloud",
-    "subject": "Cluster health RED - primary shards unassigned",
-    "body": "CRITICAL ALERT\nCluster: prod-logs-cluster\nStatus: RED\nUnassigned shards: 12 primary, 24 replica\nCause: Node elasticsearch-prod-03 ran out of disk space (95% used)\nImpact: Search queries failing, log ingestion halted\nAffected indices: logs-2026.06.11, logs-2026.06.10\nImmediate action required: 1) Free up disk space on elasticsearch-prod-03, 2) Expand storage capacity, 3) Reallocate shards. Estimated recovery time after disk cleanup: 45 minutes.",
-    "received_at": "2026-06-11T17:20:00Z"
-  },
-  {
-    "id": "mock-120",
-    "from": "sophie.laurent@premium-client.fr",
-    "from_name": "Sophie Laurent",
-    "subject": "Contract renewal discussion - requesting 15% discount for 3-year commitment",
-    "body": "Dear Sales Team, Our current enterprise contract expires on August 31, 2026. We've been very satisfied with your platform and would like to renew for a 3-year term. However, given our loyalty and the volume of our usage (500+ users), we request a 15% discount on the standard enterprise pricing. We're also evaluating your competitors who have offered us significant discounts. Can we schedule a meeting next week to discuss? We need a decision by July 15 to align with our budget planning. Cordialement, Sophie Laurent, CTO",
-    "received_at": "2026-06-11T13:45:00Z"
   }
 ]
